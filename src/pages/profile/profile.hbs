@@ -1,0 +1,36 @@
+<div class="{{styles.container}} {{styles.profile_container_size}}">
+    <div class="{{styles.profile_container__left}}">
+        <a href="#"><img src="{{left}}"></a>
+    </div>
+    <div class="{{styles.profile_container__right}}">
+        <div class="{{styles.profile_container__image}}">
+            <center>
+                </p><img src="{{avatar}}" alt="Поменять аватар" title="Поменять аватар">
+            </center>
+        </div>
+        <br>
+        <br>
+        <div class="{{styles.profile_container__title}}">{{title}}</div>
+        {{> labeledinput label=mail.label value=mail.value}}
+        <hr class="{{styles.profile_container__hr}}" color="blue" />
+        {{> labeledinput label=login.label value=login.value}}
+        <hr class="{{styles.profile_container__hr}}" color="blue" />
+        {{> labeledinput label=name.label value=name.value}}
+        <hr class="{{styles.profile_container__hr}}" color="blue" />
+        {{> labeledinput label=surname.label value=surname.value}}
+        <hr class="{{styles.profile_container__hr}}" color="blue" />
+        {{> labeledinput label=chatname.label value=chatname.value}}
+        <hr class="{{styles.profile_container__hr}}" color="blue" />
+        {{> labeledinput label=phone.label value=phone.value}}
+        <hr class="{{styles.profile_container__hr}}" color="blue" />
+        <br>
+        <br>
+        <a href="#.html">Изменить данные</a>
+        <br>
+        <br>
+        <a href="#.html">Изменить пароль</a>
+        <br>
+        <br>
+        <a href="#.html">Выйти</a>
+    </div>
+</div>
