@@ -1,9 +1,7 @@
-<div class="{{styles.container}} {{styles.container_flex}} {{styles.login_container_size}}">
+<form class="{{styles.container}} {{styles.container_flex}} {{styles.login_container_size}}">
     <div class="{{styles.login_container__title}}">{{title}}</div>
-    {{> input placeholder=login.placeholder type=login.type error_text=login.error_text}}
-    {{> input placeholder=password.placeholder type=password.type error_text=password.error_text}}
-    {{> button label=button.label}}
-    <br>
-    <a href="#.html">Нет аккаунта?</a>
-    <br>
-</div>
+    {{> input placeholder=login.placeholder type=login.type error_text=login.error_text name=login.name}}
+    {{> input placeholder=password.placeholder type=password.type error_text=password.error_text name=password.name}}
+    <div>{{> button type=button.type label=button.label}}</div>
+    <div><a href="#.html">Нет аккаунта?</a></div>
+</from>

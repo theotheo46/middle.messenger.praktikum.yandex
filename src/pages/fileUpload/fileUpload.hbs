@@ -1,12 +1,8 @@
 <div class="{{styles.container}} {{styles.container_flex}} {{styles.fileupload_container_size}}">
-    <div class="{{styles.fileupload_container__caption}}">
-        <h3 style="{{caption_color}}">{{caption}}</h3>
+    <div class="{{styles.fileupload_container__caption}} {{styles.fileupload_container__error_text}}">
+        <h3>{{caption}}</h3>
     </div>
     <a href="#.html" class="{{styles.fileupload_container__link}}">{{link_text}}</a>
-    <br>
-    <br>
-    <br>
-    {{> button label=button.label}}
-    <br>
+    {{> button type=button.type label=button.label}}
     <div class="{{styles.fileupload_container__error_text}}">{{error_text}}</div>
 </div>

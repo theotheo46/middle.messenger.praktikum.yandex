@@ -1,14 +1,12 @@
-<div class="{{styles.container}} {{styles.container_flex}} {{styles.registration_container_size}}">
+<form class="{{styles.container}} {{styles.container_flex}} {{styles.registration_container_size}}">
     <div class="{{styles.registration_container__title}}">{{title}}</div>
-    {{> input placeholder=mail.placeholder type=mail.type error_text=mail.error_text}}
-    {{> input placeholder=login.placeholder type=login.type error_text=login.error_text}}
-    {{> input placeholder=name.placeholder type=name.type error_text=name.error_text}}
-    {{> input placeholder=surname.placeholder type=surname.type error_text=surname.error_text}}
-    {{> input placeholder=phone.placeholder type=phone.type error_text=phone.error_text}}
-    {{> input placeholder=password.placeholder type=password.type error_text=password.error_text}}
-    {{> input placeholder=anotherpassword.placeholder type=anotherpassword.type error_text=anotherpassword.error_text}}
-    <br>
-    {{> button label=button.label}}
-    <br>
+    {{> input placeholder=mail.placeholder type=mail.type error_text=mail.error_text name=mail.name}}
+    {{> input placeholder=login.placeholder type=login.type error_text=login.error_text name=login.name}}
+    {{> input placeholder=name.placeholder type=name.type error_text=name.error_text name=name.name}}
+    {{> input placeholder=surname.placeholder type=surname.type error_text=surname.error_text name=surname.name}}
+    {{> input placeholder=phone.placeholder type=phone.type error_text=phone.error_text name=phone.name}}
+    {{> input placeholder=password.placeholder type=password.type error_text=password.error_text name=password.name}}
+    {{> input placeholder=anotherpassword.placeholder type=anotherpassword.type error_text=anotherpassword.error_text name=anotherpassword.name}}
+    {{> button type=button.type label=button.label}}
     <a href="#.html">Войти</a>
-</div>
+</form>

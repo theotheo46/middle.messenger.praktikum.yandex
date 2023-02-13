@@ -43,23 +43,23 @@ window.goToPage = function (name) {
     case 'login':
       context = { 
         title:    'Вход',
-        login:    {  placeholder: 'Логин', error_text: 'Неверный логин' }, 
-        password: {  placeholder: 'Пароль', type: 'password' }, 
-        button:   {  label: 'Авторизоваться'},
+        login:    {  placeholder: 'Логин', error_text: 'Неверный логин', name: 'login' , type: 'text'}, 
+        password: {  placeholder: 'Пароль', type: 'password', name:'password' }, 
+        button:   {  type: 'submit', label: 'Авторизоваться'},
         styles 
       }
       break;
     case 'registration':
       context = { 
         title:          'Регистрация',
-        mail:           {  placeholder: 'Почта'}, 
-        phone:          {  placeholder: 'Телефон' }, 
-        name:           {  placeholder: 'Имя'}, 
-        surname:        {  placeholder: 'Фамилия'}, 
-        login:          {  placeholder: 'Логин'}, 
-        anotherpassword:{  placeholder: 'Пароль (еще раз)', type: 'password', error_text: 'Неверный пароль' }, 
-        password:       {  placeholder: 'Пароль', type: 'password', error_text: 'Неверный пароль' }, 
-        button:         {  label: 'Зарегистрироваться'},
+        mail:           {  placeholder: 'Почта', name: 'email', type: 'text'}, 
+        phone:          {  placeholder: 'Телефон', name: 'phone' , type: 'text'}, 
+        name:           {  placeholder: 'Имя', name: 'first_name', type: 'text'}, 
+        surname:        {  placeholder: 'Фамилия', name: 'second_name', type: 'text'}, 
+        login:          {  placeholder: 'Логин', name: 'login', type: 'text'}, 
+        anotherpassword:{  placeholder: 'Пароль (еще раз)', type: 'password', error_text: 'Неверный пароль', name: 'password' }, 
+        password:       {  placeholder: 'Пароль', type: 'password', error_text: 'Неверный пароль', name: 'anotherpassword' }, 
+        button:         {  type: 'submit', label: 'Зарегистрироваться'},
         styles 
       }
       break;
@@ -68,12 +68,12 @@ window.goToPage = function (name) {
         title: 'Иван',
         avatar,
         left,
-        name:       {  label: 'Имя', value: 'Иван' }, 
-        surname:    {  label: 'Фамилия', value: 'Иванов' }, 
-        login:      {  label: 'Логин', value: 'ivan101010' }, 
-        mail:       {  label: 'Почта', value: 'theotheo46@gmail.com' }, 
-        chatname:   {  label: 'Имя в чате', value: 'Ванек' },
-        phone:      {  label: 'Телефон', value: '8345657384' },
+        name:       {  label: 'Имя', value: 'Иван', name: 'first_name', type: 'text'}, 
+        surname:    {  label: 'Фамилия', value: 'Иванов', name: 'second_name', type: 'text' }, 
+        login:      {  label: 'Логин', value: 'ivan101010', name: 'login' , type: 'text'}, 
+        mail:       {  label: 'Почта', value: 'theotheo46@gmail.com', name: 'email', type: 'text' }, 
+        chatname:   {  label: 'Имя в чате', value: 'Ванек', name: 'display_name', type: 'text' },
+        phone:      {  label: 'Телефон', value: '8345657384', name: 'phone', type: 'text' },
         styles 
       }
       break;
@@ -82,13 +82,13 @@ window.goToPage = function (name) {
         title: 'Иван',
         avatar,
         left,
-        button:  {  label: 'Сохранить'},
-        name:    {  label: 'Имя', value: 'Иван' }, 
-        surname: {  label: 'Фамилия', value: 'Иванов' }, 
-        login:   {  label: 'Логин', value: 'ivan101010' }, 
-        mail:    {  label: 'Почта', value: 'theotheo46@gmail.com' }, 
-        chatname:{  label: 'Имя в чате', value: 'Ванек' },
-        phone:   {  label: 'Телефон', value: '8345657384' },
+        button:  {   type: 'submit', label: 'Сохранить'},
+        name:    {  label: 'Имя', value: 'Иван', name: 'first_name', type: 'text' }, 
+        surname: {  label: 'Фамилия', value: 'Иванов', name: 'second_name', type: 'text' }, 
+        login:   {  label: 'Логин', value: 'ivan101010' , name: 'login', type: 'text' }, 
+        mail:    {  label: 'Почта', value: 'theotheo46@gmail.com' , name: 'email', type: 'text' }, 
+        chatname:{  label: 'Имя в чате', value: 'Ванек', name: 'display_name', type: 'text' },
+        phone:   {  label: 'Телефон', value: '8345657384', name: 'phone', type: 'text' },
         styles 
       }
       break;
@@ -97,10 +97,10 @@ window.goToPage = function (name) {
         title: 'Иван',
         avatar,
         left,
-        button:         {  label: 'Сохранить'},
-        oldpassword:    {  label: 'Старый пароль', value: '12345',  type: 'password' }, 
-        newpassword:    {  label: 'Новый пароль', value: '1234567', type: 'password'  }, 
-        repnewpassword: {  label: 'Новый пароль', value: '1234567', type: 'password'  }, 
+        button:         {   type: 'submit', label: 'Сохранить'},
+        oldpassword:    {  label: 'Старый пароль', value: '12345',  type: 'password', name: 'password' }, 
+        newpassword:    {  label: 'Новый пароль', value: '1234567', type: 'password' , name: 'newpassword' }, 
+        repnewpassword: {  label: 'Новый пароль', value: '1234567', type: 'password' , name: 'repnewpassword' }, 
         styles 
       }
       break;
@@ -108,7 +108,7 @@ window.goToPage = function (name) {
       context = { 
         caption:    'Загрузите файл',
         link_text:  'Выбрать файл на компьютере',
-        button:     {label: 'Поменять'},
+        button:     { type: 'button', label: 'Поменять'},
         error_text :'Нужно выбрать файл',
         styles 
       }
@@ -117,32 +117,31 @@ window.goToPage = function (name) {
       context = { 
         caption:   'Файл загружен',
         file_name: 'pic.jpg',
-        button:    {label: 'Поменять'},
+        button:    {type: 'button', label: 'Поменять'},
         styles 
       }
       break;
     case 'fileUploadError':
       context = { 
         caption:       'Ошибка попробуйте еще раз',
-        caption_color: 'color:red',
         link_text:     'Выбрать файл на компьютере',
-        button:        {label: 'Поменять'},
+        button:        {type: 'button', label: 'Поменять'},
         styles 
       }
       break;
       case 'userAdd':
         context = { 
           caption:  'Добавить пользователя',
-          button:   {label: 'Добавить'},
-          user:     {placeholder: 'Логин', value: 'ivan101010' }, 
+          button:   { type: 'submit',label: 'Добавить'},
+          user:     {placeholder: 'Логин', value: 'ivan101010', type: 'text' }, 
           styles 
         }
         break;
       case 'userRemove':
         context = { 
           caption: 'Удалить пользователя',
-          button:  {label: 'Удалить'},
-          user:    {placeholder: 'Логин', value: 'ivan101010' }, 
+          button:  { type: 'submit',label: 'Удалить'},
+          user:    {placeholder: 'Логин', value: 'ivan101010', type: 'text' }, 
           styles 
         }
         break;
@@ -161,10 +160,10 @@ window.goToPage = function (name) {
 
 window.addEventListener('DOMContentLoaded', () => {
   context = { 
-    title: 'Вход',
-    login:    {  placeholder: 'Логин',  error_text: 'Неверный логин' }, 
-    password: {  placeholder: 'Пароль', type: 'password' }, 
-    button:   {  label: 'Авторизоваться'},
+    title:    'Вход',
+    login:    {  placeholder: 'Логин', error_text: 'Неверный логин', name: 'login' , type: 'text'}, 
+    password: {  placeholder: 'Пароль', type: 'password', name:'password' }, 
+    button:   {  type: 'submit', label: 'Авторизоваться'},
     styles 
   }
   render(ROUTES.login(context));
