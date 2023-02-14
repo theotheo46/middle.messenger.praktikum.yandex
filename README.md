@@ -48,4 +48,4 @@ https://gentle-basbousa-86713f.netlify.app/
 
 
 ### Pull request
-https://github.com/theotheo46/middle.messenger.praktikum.yandex/pull/2
+https://github.com/theotheo46/middle.messenger.praktikum.yandex/pull/3
