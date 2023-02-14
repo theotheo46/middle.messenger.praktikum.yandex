@@ -1,0 +1,28 @@
+<form class="{{styles.container}} {{styles.container_profile_flex}} {{styles.profile_container_size}}">
+    <div class="{{styles.profile_container__left}}">
+        <a href="#"><img src="{{left}}"></a>
+    </div>
+    <div class="{{styles.profile_container__right}}">
+        <div class="{{styles.profile_container__image}}">
+            <center>
+                </p><img src="{{avatar}}" name="avatar" alt="Поменять аватар" title="Поменять аватар">
+            </center>
+        </div>
+        <div class="{{styles.profile_container__title}}">{{title}}</div>
+        {{> labeledinput label=mail.label value=mail.value name=mail.name}}
+        <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        {{> labeledinput label=login.label value=login.value name=login.name}}
+        <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        {{> labeledinput label=name.label value=name.value name=name.name}}
+        <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        {{> labeledinput label=surname.label value=surname.value name=surname.name}}
+        <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        {{> labeledinput label=chatname.label value=chatname.value name=chatname.name}}
+        <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        {{> labeledinput label=phone.label value=phone.value name=phone.name}}
+        <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        <div><a href="#.html">Изменить данные</a></div>
+        <div><a href="#.html">Изменить пароль</a></div>
+        <div><a href="#.html">Выйти</a></div>
+    </div>
+</from>
