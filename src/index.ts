@@ -31,14 +31,23 @@ const ROUTES = {
 
 const PORT = 3000;
 
-function render(html) {
-  const app = document.querySelector('#app');
-  app.innerHTML = html;
+//declare const window: any;
+
+declare global {
+  interface Window {
+    goToPage:any;
+  }
 }
 
-window.goToPage = function (name) {
-  const page = ROUTES[name]
-  let context;
+
+function render(html : string) {
+  const app = document.querySelector('#app');
+  app!.innerHTML = html;
+}
+
+  window.goToPage = function (name : string) {
+  const page = ROUTES[name as keyof typeof ROUTES];
+  let context : any;
   switch (name) {
     case 'login':
       context = { 
@@ -159,12 +168,12 @@ window.goToPage = function (name) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  context = { 
+  let context = { 
     title:    'Вход',
     login:    {  placeholder: 'Логин', error_text: 'Неверный логин', name: 'login' , type: 'text'}, 
     password: {  placeholder: 'Пароль', type: 'password', name:'password' }, 
     button:   {  type: 'submit', label: 'Авторизоваться'},
     styles 
   }
-  render(ROUTES.login(context));
+  render(login(context));
 });
