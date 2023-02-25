@@ -7,9 +7,6 @@ import profileSavePassword from './pages/profile/profileSavePassword.hbs';
 import fileUpload from './pages/fileUpload/fileUpload.hbs';
 import fileUploaded from './pages/fileUpload/fileUploaded.hbs';
 import user from './pages/user/user.hbs';
-import './components/button';
-import './components/input';
-import './components/labeledinput';
 import * as styles from './styles.module.pcss';
 import avatar from '../static/UserIcon6464.png';
 import left from '../static/left.png';
@@ -177,3 +174,4 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   render(login(context));
 });
+
