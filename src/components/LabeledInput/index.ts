@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import {Input, InputProps} from '../Input';
-import template from './LabeledInput.hbs';
+import template from './labeledinput.hbs';
 import * as styles from '../../styles.module.pcss';
 
 interface LabeledInputProps extends InputProps {

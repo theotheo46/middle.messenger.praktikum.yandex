@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Link.hbs';
+import template from './link.hbs';
 import * as styles from '../../styles.module.pcss';
 
 interface LinkProps {
@@ -10,7 +10,7 @@ export class Link extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super(props);
   }
-  
+
   render() {
     return this.compile(template, { ...this.props, styles });
   }

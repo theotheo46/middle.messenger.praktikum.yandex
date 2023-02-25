@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import {Input, InputProps} from '../Input';
-import template from './PlaceHolderInput.hbs';
+import template from './placeholderinput.hbs';
 import * as styles from '../../styles.module.pcss';
 
 interface PlaceHolderInputProps extends InputProps{

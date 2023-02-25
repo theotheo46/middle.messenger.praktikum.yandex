@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Button.hbs';
+import template from './button.hbs';
 import * as styles from '../../styles.module.pcss';
 
 interface ButtonProps {

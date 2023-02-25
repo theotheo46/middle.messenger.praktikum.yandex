@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Input.hbs';
+import template from './input.hbs';
 import * as styles from '../../styles.module.pcss';
 
 export interface InputProps {
