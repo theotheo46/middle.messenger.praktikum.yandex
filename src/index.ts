@@ -1,17 +1,15 @@
-import login from './pages/login/login.hbs';
-import error from './pages/error/error.hbs';
-import registration from './pages/registration/registration.hbs';
-import profile from './pages/profile/profile.hbs';
-import profileSave from './pages/profile/profileSave.hbs';
-import profileSavePassword from './pages/profile/profileSavePassword.hbs';
-import fileUpload from './pages/fileUpload/fileUpload.hbs';
-import fileUploaded from './pages/fileUpload/fileUploaded.hbs';
-import user from './pages/user/user.hbs';
-import * as styles from './styles.module.pcss';
 import avatar from '../static/UserIcon6464.png';
 import left from '../static/left.png';
+import { ErrorPage } from './pages/Error';
+import { LoginPage } from './pages/Login';
+import { RegistrationPage } from './pages/Registration';
+import { UserPage } from './pages/User';
+import { ProfileSavePasswordPage } from './pages/ProfileSavePassword';
+import { ProfilePage } from './pages/Profile';
+import { FileUploadPage } from './pages/FileUpload';
+import Block from './utils/Block';
 
-const ROUTES = {
+/* const ROUTES = {
   "login" : login,
   "404" : error,
   "500" : error,
@@ -24,11 +22,9 @@ const ROUTES = {
   "fileUploaded" : fileUploaded,
   "userAdd" : user,
   "userRemove" : user,
-}
+}  */
 
 const PORT = 3000;
-
-//declare const window: any;
 
 declare global {
   interface Window {
@@ -36,27 +32,40 @@ declare global {
   }
 }
 
-
-function render(html : string) {
-  const app = document.querySelector('#app');
-  app!.innerHTML = html;
+interface BlockConstructable<P extends Record<string, any> = any> {
+  new(props: P): Block<P>;
 }
 
-  window.goToPage = function (name : string) {
-  const page = ROUTES[name as keyof typeof ROUTES];
-  let context : any;
+function render(query: string, block: Block) {
+  const root = document.querySelector(query);
+  if (root === null) {
+    throw new Error(`root not found by selector "${query}"`);
+  }
+  root.innerHTML = '';
+  root.append(block.getContent()!);
+  return root;
+}
+
+
+ window.goToPage = function (name : string) {
+  let page;
   switch (name) {
     case 'login':
-      context = { 
-        title:    'Вход',
-        login:    {  placeholder: 'Логин', error_text: 'Неверный логин', name: 'login' , type: 'text'}, 
-        password: {  placeholder: 'Пароль', type: 'password', name:'password' }, 
-        button:   {  type: 'submit', label: 'Авторизоваться'},
-        styles 
-      }
+      page = new LoginPage(
+        {
+          title : 'Вход',
+          linkText : 'Нет аккаунта?',
+          buttonCaption : 'Авторизоваться',
+          inputs : [
+            {placeholder: 'Логин', errorText: 'Неверный логин', name: 'login' , type: 'text'},
+            {placeholder: 'Пароль', errorText: 'Неверный пароль', name: 'password' , type: 'password' },
+          ]
+        }
+      );
+      render('#app', page);
       break;
     case 'registration':
-      context = { 
+    /*   context = { 
         title:          'Регистрация',
         mail:           {  placeholder: 'Почта', name: 'email', type: 'text'}, 
         phone:          {  placeholder: 'Телефон', name: 'phone' , type: 'text'}, 
@@ -67,10 +76,28 @@ function render(html : string) {
         password:       {  placeholder: 'Пароль', type: 'password', error_text: 'Неверный пароль', name: 'anotherpassword' }, 
         button:         {  type: 'submit', label: 'Зарегистрироваться'},
         styles 
-      }
+      } */
+
+      page = new RegistrationPage (
+        {
+          title: 'Иван',
+          inputs : [
+            {type : 'text', placeholder : 'Почта', name : 'email'},
+            {type : 'text', placeholder : 'Телефон', name : 'phone'},
+            {type : 'text', placeholder : 'Имя', name : 'first_name'},
+            {type : 'text', placeholder : 'Фамилия', name : 'second_name'},
+            {type : 'text', placeholder : 'Логин', name : 'login'},
+            {type : 'password', placeholder : 'Пароль', name : 'password', errorText : 'Неверный пароль'},
+            {type : 'password', placeholder : 'Пароль (еще раз)', name : 'anotherpassword', errorText : 'Неверный пароль'},
+          ],
+          buttonCaption : 'Зарегистрироваться',     
+          link : {label : 'Войти'}
+        }
+      );
+      render('#app', page);
       break;
-    case 'profile':
-      context = { 
+   case 'profile':
+/*       context = { 
         title: 'Иван',
         avatar,
         left,
@@ -81,10 +108,32 @@ function render(html : string) {
         chatname:   {  label: 'Имя в чате', value: 'Ванек', name: 'display_name', type: 'text' },
         phone:      {  label: 'Телефон', value: '8345657384', name: 'phone', type: 'text' },
         styles 
-      }
+      } */
+      page = new ProfilePage( {
+          title : 'Иван',
+          isSave : false,
+          left,
+          avatar,
+          buttonCaption : '',
+          links : [
+            {label : 'Изменить данные'},
+            {label : 'Изменить пароль'},
+            {label : 'Выйти'},
+          ],
+          inputs : [
+            {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name'},
+            {label : 'Фамилия', type : 'text', value : 'Иванов', name : 'second_name'},
+            {label : 'Логин', type : 'text', value : 'ivan101010', name : 'login'},
+            {label : 'Почта', type : 'text', value : 'theotheo46@gmail.com', name : 'email'},
+            {label : 'Имя в чате', type : 'text', value : 'Ванек', name : 'display_name'},
+            {label : 'Телефон', type : 'text', value : '8345657384', name : 'phone'},
+          ]
+        }
+      );
+      render('#app', page);
       break;
     case 'profileSave':
-      context = { 
+/*       context = { 
         title: 'Иван',
         avatar,
         left,
@@ -96,10 +145,43 @@ function render(html : string) {
         chatname:{  label: 'Имя в чате', value: 'Ванек', name: 'display_name', type: 'text' },
         phone:   {  label: 'Телефон', value: '8345657384', name: 'phone', type: 'text' },
         styles 
+      } */
+      page = new ProfilePage( {
+        title : 'Иван',
+        isSave : true,
+        left,
+        avatar,
+        buttonCaption : 'Сохранить',
+        links : [],
+        inputs : [
+          {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name'},
+          {label : 'Фамилия', type : 'text', value : 'Иванов', name : 'second_name'},
+          {label : 'Логин', type : 'text', value : 'ivan101010', name : 'login'},
+          {label : 'Почта', type : 'text', value : 'theotheo46@gmail.com', name : 'email'},
+          {label : 'Имя в чате', type : 'text', value : 'Ванек', name : 'display_name'},
+          {label : 'Телефон', type : 'text', value : '8345657384', name : 'phone'},
+        ]
       }
+    );
+    render('#app', page);
       break;
+      
     case 'profileSavePassword':
-      context = { 
+      page = new ProfileSavePasswordPage(
+        {
+          title : 'Иван',
+          left,
+          avatar,
+          buttonCaption : 'Сохранить',
+          inputs : [
+            {label : 'Старый пароль', type : 'password', value : '12345', name : 'password'},
+            {label : 'Новый пароль', type : 'password', value : '1234567676', name : 'newpassword'},
+            {label : 'Новый пароль', type : 'password', value : '1234567676', name : 'repnewpassword'},
+          ]
+        }
+      );
+      render('#app', page);
+/*       context = { 
         title: 'Иван',
         avatar,
         left,
@@ -108,70 +190,124 @@ function render(html : string) {
         newpassword:    {  label: 'Новый пароль', value: '1234567', type: 'password' , name: 'newpassword' }, 
         repnewpassword: {  label: 'Новый пароль', value: '1234567', type: 'password' , name: 'repnewpassword' }, 
         styles 
-      }
+      } */
       break;
+      
     case 'fileUpload':
-      context = { 
+/*       context = { 
         caption:    'Загрузите файл',
         link_text:  'Выбрать файл на компьютере',
         button:     { type: 'button', label: 'Поменять'},
         error_text :'Нужно выбрать файл',
         styles 
-      }
+      } */
+      page = new FileUploadPage(
+        {
+          caption: 'Загрузите файл',
+          isFileUpload : true,
+          errorText : 'Нужно выбрать файл',
+          buttonCaption : 'Поменять',
+          fileLink : {label : 'Выбрать файл на компьютере'}
+        }
+      );
+      render('#app', page);
       break;
     case 'fileUploaded':
-      context = { 
+/*       context = { 
         caption:   'Файл загружен',
         file_name: 'pic.jpg',
         button:    {type: 'button', label: 'Поменять'},
         styles 
       }
+      break; */
+      page = new FileUploadPage(
+        {
+          caption: 'Файл загружен',
+          isFileUpload : false,
+          errorText : '',
+          buttonCaption : 'Поменять',
+          fileName : 'pic.jpg',
+          fileLink : {label : ''}
+        }
+      );
+      render('#app', page);
       break;
     case 'fileUploadError':
-      context = { 
+/*       context = { 
         caption:       'Ошибка попробуйте еще раз',
         link_text:     'Выбрать файл на компьютере',
         button:        {type: 'button', label: 'Поменять'},
         styles 
-      }
+      } */
+      page = new FileUploadPage(
+        {
+          caption: 'Ошибка попробуйте еще раз',
+          isFileUpload : true,
+          buttonCaption : 'Поменять',
+          fileLink : {label : 'Выбрать файл на компьютере'}
+        }
+      );
+      render('#app', page);
       break;
+      
       case 'userAdd':
-        context = { 
+/*         context = { 
           caption:  'Добавить пользователя',
           button:   { type: 'submit',label: 'Добавить'},
           user:     {placeholder: 'Логин', value: 'ivan101010', type: 'text' }, 
           styles 
-        }
+        } */
+        page = new UserPage(
+          {
+            caption: 'Добавить пользователя',
+            input : {type : 'text', placeholder : 'Логин', name : 'login', value: 'ivan101010'},
+            buttonCaption : 'Добавить',
+          }
+        );
+        render('#app', page);
         break;
       case 'userRemove':
-        context = { 
+/*         context = { 
           caption: 'Удалить пользователя',
           button:  { type: 'submit',label: 'Удалить'},
           user:    {placeholder: 'Логин', value: 'ivan101010', type: 'text' }, 
           styles 
-        }
-        break;
+        } */
+        page = new UserPage(
+          {
+            caption: 'Удалить пользователя',
+            input : {type : 'text', placeholder : 'Логин', name : 'login', value: 'ivan101010'},
+            buttonCaption : 'Удалить',
+          }
+        );
+        render('#app', page);
+        break; 
     case '404':
-      context = { errorCode: '404', errorText: 'Не туда попали', styles }
+      page = new ErrorPage({errorCode : 404, errorText : 'Не туда попали', link : {label : 'Назад к чатам'}});
+      render('#app', page);
       break;
     case '500':
-      context = { errorCode: '500', errorText: 'Мы уже фиксим', styles }
+      page = new ErrorPage({errorCode : 500, errorText : 'Мы уже фиксим', link : {label : 'Назад к чатам'}});
+      render('#app', page);
       break;
     default:
       console.log('Unknown name: ' + name);
       break;
   }
-  render(page(context));
-}
+} 
 
 window.addEventListener('DOMContentLoaded', () => {
-  let context = { 
-    title:    'Вход',
-    login:    {  placeholder: 'Логин', error_text: 'Неверный логин', name: 'login' , type: 'text'}, 
-    password: {  placeholder: 'Пароль', type: 'password', name:'password' }, 
-    button:   {  type: 'submit', label: 'Авторизоваться'},
-    styles 
-  }
-  render(login(context));
+  const page = new LoginPage(
+    {
+      title : 'Вход',
+      linkText : 'Нет аккаунта?',
+      buttonCaption : 'Авторизоваться',
+      inputs : [
+        {placeholder: 'Логин', errorText: 'Неверный логин', name: 'login' , type: 'text' },
+        {placeholder: 'Пароль', errorText: 'Неверный пароль', name: 'password' , type: 'password'},
+      ]
+    }
+  );
+  render('#app', page);
 });
 

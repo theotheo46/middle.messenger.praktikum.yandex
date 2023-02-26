@@ -3,7 +3,7 @@ import {Input, InputProps} from '../Input';
 import template from './labeledinput.hbs';
 import * as styles from '../../styles.module.pcss';
 
-interface LabeledInputProps extends InputProps {
+export interface LabeledInputProps extends InputProps {
   label: string;
 }
 

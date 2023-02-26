@@ -1,0 +1,24 @@
+<form class="{{styles.container}} {{styles.container_profile_flex}} {{styles.profile_container_size}}">
+    <div class="{{styles.profile_container__left}}">
+        <a href="#"><img src="{{left}}"></a>
+    </div>
+    <div class="{{styles.profile_container__right}}">
+        <div class="{{styles.profile_container__image}}">
+            <center>
+                </p><img src="{{avatar}}" name="avatar" alt="Поменять аватар" title="Поменять аватар">
+            </center>
+        </div>
+        <div class="{{styles.profile_container__title}}">{{title}}</div>
+        {{#each inputs}}
+            {{{this}}}
+            <div class="{{styles.profile_container__hr}}"><hr color="blue" /></div>
+        {{/each}}
+        {{#if isSave }}
+            <div><center>{{{button}}}</center></div>
+        {{else}}
+        {{#each links}}
+            <div><center>{{{this}}}</center></div>
+        {{/each}}
+        {{/if}}
+    </div>
+</from>

@@ -3,9 +3,9 @@ import template from './input.hbs';
 import * as styles from '../../styles.module.pcss';
 
 export interface InputProps {
-  type?: string;
-  placeholder: string;
-  value: string;
+  type: string;
+  placeholder?: string;
+  value?: string;
   name: string;
 }
 

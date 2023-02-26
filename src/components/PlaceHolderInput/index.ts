@@ -3,8 +3,8 @@ import {Input, InputProps} from '../Input';
 import template from './placeholderinput.hbs';
 import * as styles from '../../styles.module.pcss';
 
-interface PlaceHolderInputProps extends InputProps{
-  error_text: string;
+export interface PlaceHolderInputProps extends InputProps{
+  errorText?: string;
 }
 
 export class PlaceHolderInput extends Block<PlaceHolderInputProps> {

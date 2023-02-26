@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './link.hbs';
 import * as styles from '../../styles.module.pcss';
 
-interface LinkProps {
+export interface LinkProps {
   label: string;
 }
 
