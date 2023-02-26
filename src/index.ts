@@ -325,6 +325,14 @@ function render(query: string, block: Block) {
               message : 'Дай денег',
               unread_count : 20,
             }
+            ,
+            {
+              avatar,
+              title : 'Чужой',
+              datetime : 'пт',
+              message : 'Добрый день',
+              unread_count : 10,
+            }
           ]
         }
       );
