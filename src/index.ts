@@ -7,6 +7,7 @@ import { UserPage } from './pages/User';
 import { ProfileSavePasswordPage } from './pages/ProfileSavePassword';
 import { ProfilePage } from './pages/Profile';
 import { FileUploadPage } from './pages/FileUpload';
+import { ChatWindow } from './pages/ChatWindow';
 import Block from './utils/Block';
 
 /* const ROUTES = {
@@ -288,6 +289,45 @@ function render(query: string, block: Block) {
       break;
     case '500':
       page = new ErrorPage({errorCode : 500, errorText : 'Мы уже фиксим', link : {label : 'Назад к чатам'}});
+      render('#app', page);
+      break;
+    case 'chatWindow':
+      page = new ChatWindow(
+        {
+          profileLink : {label : 'Профиль >'},
+          searchInput : {type : 'text', placeholder : 'Поиск', name : 'Search'},
+          chats : [
+            {
+              avatar,
+              title : 'Игорь',
+              datetime : '11:15',
+              message : 'Привет',
+              unread_count : 5,
+            },
+            {
+              avatar,
+              title : 'Иван',
+              datetime : '12:15',
+              message : 'фыдлврофдылворфдылвордыфлвордыфлворыфдлорвыфдлворыдф фырвлыфдорв ыфлорвдыфлрводфлыорв лфыорвдлыфорвдыфлрво',
+              unread_count : 3,
+            },
+            {
+              avatar,
+              title : 'Петр',
+              datetime : '13:15',
+              message : 'Привет',
+              unread_count : 0,
+            },
+            {
+              avatar,
+              title : 'ЯЕгоНезнаю',
+              datetime : '13:15',
+              message : 'Дай денег',
+              unread_count : 20,
+            }
+          ]
+        }
+      );
       render('#app', page);
       break;
     default:

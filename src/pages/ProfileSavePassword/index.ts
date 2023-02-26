@@ -20,10 +20,10 @@ export class ProfileSavePasswordPage extends Block<ProfileSavePasswordPageProps>
   protected init() {
 
     this.children.inputs = [];
-   
-    this.children.inputs.push(new LabeledInput(this.props.inputs[0]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[1]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[2]));
+
+    for (const prop of this.props.inputs) {
+      this.children.inputs.push(new LabeledInput(prop));
+    }
    
     this.children.button = new Button({
       label: this.props.buttonCaption,

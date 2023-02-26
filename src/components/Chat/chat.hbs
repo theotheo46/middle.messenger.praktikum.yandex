@@ -1,4 +1,4 @@
-<div class="{{ styles.chat }}">
+<div class="{{styles.chat_container}} {{ styles.chat_container_flex }} ">
     <div class="{{ styles.chat__left_pane }}">
         <img src="{{avatar}}" name="avatar" alt="Аватар">
     </div>
@@ -8,7 +8,7 @@
             <div>{{datetime}}</div>
         </div>
         <div class="{{ styles.chat__lower_pane }}">
-            <div>{{message}}</div>
+            <div class="{{ styles.chat__message }}">{{message}}</div>
             {{#if unread_count }}
                 <div class="{{ styles.chat__badge }}">{{unread_count}}</div>
             {{/if}}

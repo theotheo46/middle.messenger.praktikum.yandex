@@ -27,9 +27,10 @@ export class LoginPage extends Block<LoginPageProps> {
     });
 
     this.children.inputs = [];
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[0]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[1]));
 
+    for (const prop of this.props.inputs) {
+      this.children.inputs.push(new PlaceHolderInput(prop));
+    }
   }
 
   render() {

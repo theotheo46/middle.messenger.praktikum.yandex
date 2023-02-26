@@ -20,14 +20,10 @@ export class RegistrationPage extends Block<RegistrationPageProps> {
   protected init() {
 
     this.children.inputs = [];
-   
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[0]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[1]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[2]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[3]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[4]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[5]));
-    this.children.inputs.push(new PlaceHolderInput(this.props.inputs[6]));
+
+    for (const prop of this.props.inputs) {
+      this.children.inputs.push(new PlaceHolderInput(prop));
+    }
  
    
     this.children.button = new Button({

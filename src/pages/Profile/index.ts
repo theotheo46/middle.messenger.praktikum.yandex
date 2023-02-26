@@ -25,12 +25,9 @@ export class ProfilePage extends Block<ProfilePageProps> {
     this.children.inputs = [];
     this.children.links = [];
 
-    this.children.inputs.push(new LabeledInput(this.props.inputs[0]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[1]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[2]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[3]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[4]));
-    this.children.inputs.push(new LabeledInput(this.props.inputs[5]));
+    for (const prop of this.props.inputs) {
+      this.children.inputs.push(new LabeledInput(prop));
+    }
 
     if (this.props.isSave) {
       this.children.button = new Button({
@@ -38,9 +35,9 @@ export class ProfilePage extends Block<ProfilePageProps> {
       });
     }
     else {
-      this.children.links.push(new Link(this.props.links[0]));
-      this.children.links.push(new Link(this.props.links[1]));
-      this.children.links.push(new Link(this.props.links[2]));
+      for (const prop of this.props.links) {
+        this.children.links.push(new Link(prop));
+      }
     }
 
   }

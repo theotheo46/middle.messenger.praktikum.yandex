@@ -182,3 +182,69 @@ color: grey;
     color : blue;
     cursor: pointer;
 }
+
+.chat_container {
+    border: 1px outset black;
+}
+
+
+.chat_container_flex {
+    display: flex;
+    flex-direction: row
+}
+
+.chat__upper_pane, .chat__lower_pane {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chat__right_pane {
+    display: flex;
+    flex-direction: column;
+    width : 75%;
+}
+
+.chat_window_flex {
+    display: flex;
+    flex-direction: row
+}
+
+.chat_window_size {
+    width: 1000px;
+    height: 750px;  
+}
+
+.chat_window__left_pane {
+    width : 300;
+    border: 1px outset black;
+}
+
+.chat__title {
+    font-size: 20px;
+}
+
+.chat__badge {
+/*     height: 20px;
+    width: 20px;
+    background: #44f0f8;
+    border-radius: 10px;
+    text-align: center; */
+
+    font-size: 19px;
+
+    color: red;
+}
+
+.chat_window__profileLink {
+    text-align: right;
+}
+
+.chat__message {
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+
+    padding: 5px; /* Поля вокруг текста */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+

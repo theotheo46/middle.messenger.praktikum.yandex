@@ -21,9 +21,10 @@ export class ChatWindow extends Block<ChatWindowProps> {
     this.children.profileLink = new Link(this.props.profileLink);
     this.children.searchInput = new Input(this.props.searchInput);
     this.children.chats = [];
-    this.children.chats.push(new Chat(this.props.chats[0]));
-    this.children.chats.push(new Chat(this.props.chats[1]));
-    this.children.chats.push(new Chat(this.props.chats[2]));
+
+    for (const chatProp of this.props.chats) {
+      this.children.chats.push(new Chat(chatProp));
+    }
   }
 
   render() {
