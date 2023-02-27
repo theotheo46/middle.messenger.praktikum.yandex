@@ -22,11 +22,18 @@ export class LoginPage extends Block<LoginPageProps> {
 
     this.children.button = new Button({
       label: this.props.buttonCaption,
+      events: {
+        click: () => {}
+      }
     });
 
     this.children.inputs = [];
 
     for (const prop of this.props.inputs) {
+      prop.events = {
+              focus: () => {},
+              blur: () => {}
+            };
       this.children.inputs.push(new PlaceHolderInput(prop));
     }
   }

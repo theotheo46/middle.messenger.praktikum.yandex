@@ -27,6 +27,9 @@ export class FileUploadPage extends Block<FileUploadPageProps> {
 
     this.children.button = new Button({
       label: this.props.buttonCaption,
+      events: {
+        click: () => this.log()
+      },
     });
 
   }
@@ -34,4 +37,9 @@ export class FileUploadPage extends Block<FileUploadPageProps> {
   render() {
     return this.compile(template, { ...this.props, styles });
   }
+
+  log() {
+    console.log('Click!');
+  }
+
 }

@@ -5,9 +5,9 @@ import * as styles from '../../styles.module.pcss';
 interface ButtonProps {
   type?: string;
   label: string;
-/*   events: {
+  events: {
     click: () => void;
-  }; */
+  };
 }
 
 export class Button extends Block<ButtonProps> {
