@@ -21,4 +21,14 @@ export class Input extends Block<InputProps> {
   render() {
     return this.compile(template, { ...this.props, styles });
   }
+
+  value() {
+    const input = this.element as HTMLInputElement;
+    return input.value;
+  }
+
+  name() {
+    const input = this.element as HTMLInputElement;
+    return input.name;
+  }
 }
