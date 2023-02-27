@@ -1,4 +1,12 @@
 import avatar from '../static/UserIcon6464.png';
+import addRemoveUserButton from '../static/threepoints.png';
+import attachButton from '../static/Attachment.png';
+import chatEnterButton from '../static/ChatEnter.png';
+import photoOrVideoAttachment from '../static/PhotoOrVideoAttachment.png';
+import fileAttachment from '../static/FileAttachment.png';
+import locationAttachment from '../static/LocationAttachment.png';
+import addUser from '../static/AddUser.png';
+import removeUser from '../static/RemoveUser.png';
 import left from '../static/left.png';
 import { ErrorPage } from './pages/Error';
 import { LoginPage } from './pages/Login';
@@ -8,6 +16,7 @@ import { ProfileSavePasswordPage } from './pages/ProfileSavePassword';
 import { ProfilePage } from './pages/Profile';
 import { FileUploadPage } from './pages/FileUpload';
 import { ChatWindow } from './pages/ChatWindow';
+import { RefPicPopup } from './pages/RefPicPopup';
 import Block from './utils/Block';
 
 /* const ROUTES = {
@@ -55,7 +64,11 @@ function render(query: string, block: Block) {
       page = new LoginPage(
         {
           title : 'Вход',
-          linkText : 'Нет аккаунта?',
+          link : {
+            label: 'Нет аккаунта?',
+            href : '#',
+            name : 'loginref',
+          },
           buttonCaption : 'Авторизоваться',
           inputs : [
             {placeholder: 'Логин', errorText: 'Неверный логин', name: 'login' , type: 'text'},
@@ -92,7 +105,11 @@ function render(query: string, block: Block) {
             {type : 'password', placeholder : 'Пароль (еще раз)', name : 'anotherpassword', errorText : 'Неверный пароль'},
           ],
           buttonCaption : 'Зарегистрироваться',     
-          link : {label : 'Войти'}
+          link : {
+            label: 'Войти',
+            href : '#',
+            name : 'enterref',
+          }
         }
       );
       render('#app', page);
@@ -117,9 +134,21 @@ function render(query: string, block: Block) {
           avatar,
           buttonCaption : '',
           links : [
-            {label : 'Изменить данные'},
-            {label : 'Изменить пароль'},
-            {label : 'Выйти'},
+            {
+              label: 'Изменить данные',
+              href : '#',
+              name : 'datachref',
+            },
+            {
+              label: 'Изменить пароль',
+              href : '#',
+              name : 'passchref',
+            },
+            {
+              label: 'Выйти',
+              href : '#',
+              name : 'exitref',
+            },
           ],
           inputs : [
             {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name'},
@@ -208,7 +237,11 @@ function render(query: string, block: Block) {
           isFileUpload : true,
           errorText : 'Нужно выбрать файл',
           buttonCaption : 'Поменять',
-          fileLink : {label : 'Выбрать файл на компьютере'}
+          fileLink : {
+            label: 'Выбрать файл на компьютере',
+            href : '#',
+            name : 'choiceref',
+          }
         }
       );
       render('#app', page);
@@ -228,7 +261,11 @@ function render(query: string, block: Block) {
           errorText : '',
           buttonCaption : 'Поменять',
           fileName : 'pic.jpg',
-          fileLink : {label : ''}
+          fileLink : {
+            label: '',
+            href : '#',
+            name : 'enterref',
+          }
         }
       );
       render('#app', page);
@@ -245,7 +282,11 @@ function render(query: string, block: Block) {
           caption: 'Ошибка попробуйте еще раз',
           isFileUpload : true,
           buttonCaption : 'Поменять',
-          fileLink : {label : 'Выбрать файл на компьютере'}
+          fileLink : {
+            label: 'Выбрать файл на компьютере',
+            href : '#',
+            name : 'enterref',
+          }
         }
       );
       render('#app', page);
@@ -284,17 +325,66 @@ function render(query: string, block: Block) {
         render('#app', page);
         break; 
     case '404':
-      page = new ErrorPage({errorCode : 404, errorText : 'Не туда попали', link : {label : 'Назад к чатам'}});
+      page = new ErrorPage({errorCode : 404, errorText : 'Не туда попали', link : {
+        label: 'Назад к чатам',
+        href : '#',
+        name : 'returnref',
+      }});
       render('#app', page);
       break;
     case '500':
-      page = new ErrorPage({errorCode : 500, errorText : 'Мы уже фиксим', link : {label : 'Назад к чатам'}});
+      page = new ErrorPage({errorCode : 500, errorText : 'Мы уже фиксим', link : {
+        label: 'Назад к чатам',
+        href : '#',
+        name : 'returnref',
+      }});
       render('#app', page);
       break;
+    case 'attachmentPopUp':
+      page = new RefPicPopup({links : [
+      {
+        label: 'Фото или видеo',
+        href : '#',
+        image : photoOrVideoAttachment
+      },
+      {
+        label: 'Файл',
+        href : '#',
+        image : fileAttachment
+      },  
+      {
+        label: 'Локация',
+        href : '#',
+        image : locationAttachment
+      },    
+    ]
+    });
+    render('#app', page);
+    break;
+    case 'addRemoveUserPopUp':
+      page = new RefPicPopup({links : [
+      {
+        label: 'Добавить пользователя',
+        href : '#',
+        image : addUser
+      },
+      {
+        label: 'Удалить пользователя',
+        href : '#',
+        image : removeUser
+      }  
+    ]
+    });
+    render('#app', page);
+    break;
     case 'chatWindow':
       page = new ChatWindow(
         {
-          profileLink : {label : 'Профиль >'},
+          profileLink : {
+            label: 'Профиль>',
+            href : '#',
+            name : 'enterref',
+          },
           searchInput : {type : 'text', placeholder : 'Поиск', name : 'Search'},
           chats : [
             {
@@ -333,7 +423,22 @@ function render(query: string, block: Block) {
               message : 'Добрый день',
               unread_count : 10,
             }
-          ]
+          ],
+          avatar,
+          addRemoveLink : {
+            href : '#',
+            image : addRemoveUserButton,
+          },
+          title: 'Дмитрий',
+          attachLink: {
+            href : '#',
+            image : attachButton,
+          },
+          messageInput: {type : 'text', placeholder : '', name : 'messageEntry'},
+          enterLink: {
+            href : '#',
+            image : chatEnterButton,
+          },
         }
       );
       render('#app', page);
@@ -345,17 +450,6 @@ function render(query: string, block: Block) {
 } 
 
 window.addEventListener('DOMContentLoaded', () => {
-  const page = new LoginPage(
-    {
-      title : 'Вход',
-      linkText : 'Нет аккаунта?',
-      buttonCaption : 'Авторизоваться',
-      inputs : [
-        {placeholder: 'Логин', errorText: 'Неверный логин', name: 'login' , type: 'text' },
-        {placeholder: 'Пароль', errorText: 'Неверный пароль', name: 'password' , type: 'password'},
-      ]
-    }
-  );
-  render('#app', page);
+  window.goToPage('login');
 });
 

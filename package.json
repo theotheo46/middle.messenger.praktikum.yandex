@@ -1,7 +1,7 @@
 {
   "name": "sprint_1",
   "version": "1.0.0",
-  "description": "sprint_1 YAP project",
+  "description": "sprint_2 YAP project",
   "source": "src/index.html",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,7 @@
     "@parcel/transformer-typescript-types": "^2.0.0-nightly.826",
     "@parcel/validator-typescript": "^2.8.3",
     "@types/handlebars": "^4.1.0",
-    "@types/node": "^16.7.4",
+    "@types/node": "^16.18.13",
     "assert": "2.0.0",
     "browserify-zlib": "0.2.0",
     "buffer": "5.7.1",

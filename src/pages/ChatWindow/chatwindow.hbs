@@ -7,7 +7,23 @@
         {{/each}}
     </div>
     <div class="{{ styles.chat_window__right_pane }}">
-        <div>Under construction</div>
+        <div class="{{ styles.chat_window__right_pane_top }}">
+            <div class="{{ styles.chat_window__right_pane_top_left }}">
+                <span><img src="{{avatar}}" name="avatar" alt="Аватар"></span>
+                <span>{{{title}}}</span>
+            </div>
+            <div class="{{ styles.chat_window__right_pane_top_right }}">
+              {{{addRemoveLink}}}
+            </div>
+        </div>
+        <div class="{{ styles.chat_window__right_pane_middle }}">
+             <p>Under construction</p>
+        </div>
+        <div class="{{ styles.chat_window__right_pane_bottom }}">
+            {{{attachLink}}}
+            {{{messageInput}}}
+            {{{enterLink}}}
+        </div>
     </div>
 </div>
  

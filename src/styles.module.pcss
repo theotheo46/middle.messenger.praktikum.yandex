@@ -77,10 +77,12 @@
 }
 
 .input_container__input {
-    border-top-style: hidden;
+/*     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
-    border-bottom-color: blue;
+    border-bottom-color: blue; */
+
+    border: 1px outset lightgray;
     font-size: 15px;
     line-height: 28px;
     width: 100%;
@@ -185,6 +187,10 @@ color: grey;
 
 .chat_container {
     border: 1px outset black;
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
 }
 
 
@@ -211,14 +217,57 @@ color: grey;
 }
 
 .chat_window_size {
-    width: 1000px;
+    width: 800px;
     height: 750px;  
 }
 
 .chat_window__left_pane {
-    width : 300;
+    width : 30%;
     border: 1px outset black;
 }
+
+.chat_window__right_pane {
+    display: flex;
+    flex-direction: column;
+    width : 70%;
+    border: 1px outset black;
+}
+
+.chat_window__right_pane_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chat_window__right_pane_top_left {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    align-items: center;
+}
+
+.chat_window__right_pane_top_right {
+    
+}
+
+.chat_window__right_pane_middle {
+    border: 1px outset black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 100%;
+}
+
+.chat_window__right_pane_bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.chat_window__right_pane_bottom > input {
+   width : 95%;
+}
+
 
 .chat__title {
     font-size: 20px;
@@ -246,5 +295,16 @@ color: grey;
 
     padding: 5px; /* Поля вокруг текста */
     text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.refpicpopup_flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+}
+
+.refpicpopup_size {
+    width: 190px;
+    height: 80px;
 }
 

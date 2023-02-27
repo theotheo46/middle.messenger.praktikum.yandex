@@ -3,7 +3,11 @@ import template from './link.hbs';
 import * as styles from '../../styles.module.pcss';
 
 export interface LinkProps {
-  label: string;
+  label?: string;
+  href : string;
+  image? : any;
+  name? : string;
+  alt? : string;
 }
 
 export class Link extends Block<LinkProps> {

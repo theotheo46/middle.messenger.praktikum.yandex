@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import {Link} from '../../components/Link';
+import {Link, LinkProps} from '../../components/Link';
 import {PlaceHolderInput, PlaceHolderInputProps} from '../../components/PlaceHolderInput';
 import {Button} from '../../components/Button';
 import template from './login.hbs';
@@ -8,7 +8,7 @@ import * as styles from '../../styles.module.pcss';
 interface LoginPageProps {
   title: string;
   inputs : PlaceHolderInputProps[],
-  linkText : string;
+  link : LinkProps;
   buttonCaption : string;
 }
 
@@ -18,9 +18,7 @@ export class LoginPage extends Block<LoginPageProps> {
   }
 
   protected init() {
-    this.children.link = new Link({
-      label: this.props.linkText,
-    });
+    this.children.link = new Link(this.props.link);
 
     this.children.button = new Button({
       label: this.props.buttonCaption,
