@@ -13,7 +13,7 @@ password — от 8 до 40 символов, обязательно хотя б
 phone — от 10 до 15 символов, состоит из цифр, может начинается с плюса.
 message — не должно быть пустым. */
 
-class Validator {
+export class Validator {
 
     private readonly VALIDATORS : Record<InputNames, any> = {
         'email' : /^[a-z0-9-]+@[a-z]+\.[a-z]+$/,

@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import {Input, InputProps} from '../Input';
-import { ErrorInformer, ErrorInformerProps } from '../ErrorInformer';
+import { ErrorInformer} from '../ErrorInformer';
 import template from './placeholderinput.hbs';
 import * as styles from '../../styles.module.pcss';
 

@@ -18,17 +18,10 @@ import { FileUploadPage } from './pages/FileUpload';
 import { ChatWindow } from './pages/ChatWindow';
 import { RefPicPopup } from './pages/RefPicPopup';
 import Block from './utils/Block';
-
-const PORT = 3000;
-
 declare global {
   interface Window {
     goToPage:any;
   }
-}
-
-interface BlockConstructable<P extends Record<string, any> = any> {
-  new(props: P): Block<P>;
 }
 
 function render(query: string, block: Block) {

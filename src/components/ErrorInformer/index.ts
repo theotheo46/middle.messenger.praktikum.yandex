@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './errorinformer.hbs';
 import * as styles from '../../styles.module.pcss';
 
-export interface ErrorInformerProps {
+interface ErrorInformerProps {
   text: string;
 }
 
