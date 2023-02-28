@@ -75,6 +75,7 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   protected init() {
   }
 
@@ -82,6 +83,7 @@ class Block<P extends Record<string, any> = any> {
     this.componentDidMount();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   componentDidMount() {
   }
 
@@ -183,6 +185,7 @@ class Block<P extends Record<string, any> = any> {
 
   _makePropsProxy(props: P) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     return new Proxy(props, {

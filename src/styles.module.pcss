@@ -1,11 +1,8 @@
 .container {
     margin: auto;
-    color: #000000;
+    color: #000;
     border: 1px outset blue;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 .container_flex {
@@ -51,12 +48,11 @@
 
 
 .profile_container__hr {
-    align: center;
     width: 100%; 
 }
 
 .login_container__title, .registration_container__title, .profile_container__title {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align: center;
     font-size: 30px;
     line-height: 24px;
@@ -64,9 +60,9 @@
 }
 
 .input_container {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align: left;
-    color: #000000;
+    color: #000;
     width: 90%;
 }
 
@@ -115,10 +111,7 @@
 .labeled_input_container__input input {
     font-size: 15px;
     line-height: 28px;
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: hidden;
+    border-style: hidden;
     text-align : right;
 }
 
@@ -138,27 +131,25 @@
     left: 40%;
 }
 
-.error_container__code {
+/* .error_container__code {
 
-}
+} */
 
 .error_container__stub {
     height : 20%;
 }
 
-.error_container__text {
+/* .error_container__text {
 
-}
+} */
 
 
 .profile_container__right {
     width: 78%;
-    /* border: 1px outset blue; */
 }
 
 .profile_container__left {
    width : 20%;
-   /* border: 1px outset blue; */
 }
 
 .profile_container__left img {
@@ -167,9 +158,9 @@
     margin-top: 40%;
 }
 
-.fileupload_container__caption {
+/* .fileupload_container__caption {
 
-}
+} */
 
 .fileupload_container__error_text {
 color: red;
@@ -187,10 +178,7 @@ color: grey;
 
 .chat_container {
     border: 1px outset black;
-    padding-top: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
-    padding-left: 2px;
+    padding: 2px;
 }
 
 
@@ -246,9 +234,9 @@ color: grey;
     align-items: center;
 }
 
-.chat_window__right_pane_top_right {
+/* .chat_window__right_pane_top_right {
     
-}
+} */
 
 .chat_window__right_pane_middle {
     border: 1px outset black;
@@ -274,14 +262,7 @@ color: grey;
 }
 
 .chat__badge {
-/*     height: 20px;
-    width: 20px;
-    background: #44f0f8;
-    border-radius: 10px;
-    text-align: center; */
-
     font-size: 19px;
-
     color: red;
 }
 
@@ -292,7 +273,6 @@ color: grey;
 .chat__message {
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
-
     padding: 5px; /* Поля вокруг текста */
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
