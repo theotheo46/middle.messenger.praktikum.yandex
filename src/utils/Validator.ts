@@ -25,15 +25,8 @@ class Validator {
         'password' : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
     }
 
-    constructor() {
-        
-
-    }
-
     validate(inputevent: INPUTEVENTS, name : InputNames, value : string) : boolean {
-        const ret = this._check(value, this.VALIDATORS[name]);
-        console.log(ret);
-        return ret;    
+        return this._check(value, this.VALIDATORS[name]);   
     }
 
     private _check(value : string, regexp : any) : boolean {
