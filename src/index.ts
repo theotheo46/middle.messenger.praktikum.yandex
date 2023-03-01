@@ -49,8 +49,8 @@ function render(query: string, block: Block) {
           },
           buttonCaption : 'Авторизоваться',
           inputs : [
-            {placeholder: 'Логин', errorText: 'Неверный логин', name: 'login' , type: 'text'},
-            {placeholder: 'Пароль', errorText: 'Неверный пароль', name: 'password' , type: 'password' },
+            {placeholder: 'Логин', errorText: '', name: 'login' , type: 'text'},
+            {placeholder: 'Пароль', errorText: '', name: 'password' , type: 'password' },
           ]
         }
       );
@@ -66,8 +66,8 @@ function render(query: string, block: Block) {
             {type : 'text', placeholder : 'Имя', name : 'first_name', errorText: ''},
             {type : 'text', placeholder : 'Фамилия', name : 'second_name', errorText: ''},
             {type : 'text', placeholder : 'Логин', name : 'login', errorText: ''},
-            {type : 'password', placeholder : 'Пароль', name : 'password', errorText : 'Неверный пароль'},
-            {type : 'password', placeholder : 'Пароль (еще раз)', name : 'anotherpassword', errorText : 'Неверный пароль'},
+            {type : 'password', placeholder : 'Пароль', name : 'password', errorText : ''},
+            {type : 'password', placeholder : 'Пароль (еще раз)', name : 'anotherpassword', errorText : ''},
           ],
           buttonCaption : 'Зарегистрироваться',     
           link : {

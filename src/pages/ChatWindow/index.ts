@@ -1,7 +1,6 @@
 import Block from '../../utils/Block';
 import {Link, LinkProps} from '../../components/Link';
 import {Input, InputProps} from '../../components/Input';
-import {Button} from '../../components/Button';
 import {Chat, ChatProps} from '../../components/Chat';
 import template from './chatwindow.hbs';
 import * as styles from '../../styles.module.pcss';
