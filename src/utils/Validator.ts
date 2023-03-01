@@ -1,9 +1,3 @@
-export enum INPUTEVENTS {
-    FOCUS = 'focus',
-    BLUR = 'blur'
-}
-
-
 //при добавления нового инпута его аттрибут name надо добавить в type InputNames и в объект VALIDATORS с соответствующими паттерном и error message
 //все аттрибуты name (для инпутов) должны быть уникальны в рамках всего приложения
 export type InputNames = 'email' | 'phone' | 'login' | 'first_name' | 'second_name' | 'message' | 'password';
@@ -40,7 +34,7 @@ export class Validator {
         return this._instance || (this._instance = new this());
     }
 
-    validate(inputevent: INPUTEVENTS, name : InputNames, value : string) : boolean {
+    validate(name : InputNames, value : string) : boolean {
         return this._check(value, this.VALIDATORS[name].regex);   
     }
 

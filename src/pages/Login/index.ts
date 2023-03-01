@@ -3,7 +3,7 @@ import {Link, LinkProps} from '../../components/Link';
 import {PlaceHolderInput, PlaceHolderInputProps} from '../../components/PlaceHolderInput';
 import {Button} from '../../components/Button';
 import template from './login.hbs';
-import {Validator, INPUTEVENTS, InputNames} from '../../utils/Validator';
+import {Validator, InputNames} from '../../utils/Validator';
 import HTTPTRansport from '../../utils/HTTPTRansport';
 import { BlockUtility} from '../../utils/BlockUtility';
 import * as styles from '../../styles.module.pcss';
@@ -64,7 +64,7 @@ export class LoginPage extends Block<LoginPageProps> {
     const inputNameVal = BlockUtility.getInputValArray(this.children.inputs);
     inputNameVal.forEach( inpNV => {
       console.log(inpNV);
-      if (!this.validator.validate(INPUTEVENTS.BLUR, inpNV.name as InputNames, inpNV.value)) {
+      if (!this.validator.validate(inpNV.name as InputNames, inpNV.value)) {
         errStr = errStr + this.validator.VALIDATORS[inpNV.name as InputNames].errorMessage + '\n';
       }
     })
