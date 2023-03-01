@@ -42,6 +42,17 @@ __dirname: /home/theo/js/webmessenger/src/server
 ### Эскизы экранов проекта
 https://www.figma.com/file/czgVwSwTwVXR7bsZkTCPpq/ChatDesign?node-id=0%3A1&t=fprZOeuuS8Qe8bnG-1
 
+### Linting
+#### ESLint
+```
+node_modules/.bin/eslint . --ext .ts
+```
+#### Stylelint
+```
+ npx stylelint src/styles.module.pcss 
+ ```
+
+ 
 ### Netlify
 Проект выложен на хостинг-портал Netlify по ссылке:
 https://gentle-basbousa-86713f.netlify.app/
