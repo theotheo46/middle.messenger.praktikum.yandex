@@ -58,11 +58,12 @@ node_modules/.bin/eslint . --ext .ts
 npx stylelint src/styles.module.pcss 
 ```
 
- 
+
 ### Netlify
 Проект выложен на хостинг-портал Netlify по ссылке:
 https://gentle-basbousa-86713f.netlify.app/
 
 
+
 ### Pull request
-https://github.com/theotheo46/middle.messenger.praktikum.yandex/pull/2
+https://github.com/theotheo46/middle.messenger.praktikum.yandex/pull/4
