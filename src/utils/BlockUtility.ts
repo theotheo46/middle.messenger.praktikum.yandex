@@ -25,4 +25,11 @@ export class BlockUtility {
         return retInputValArr;
       }
 
+      public static  queryStringify(inputs : InputNameVal[]) : string {
+
+        return inputs.reduce((result, input, index) => {
+            return `${result}${input.name}=${input.value}${index < inputs.length - 1 ? '&' : ''}`;
+        }, '?');
+    }
+
 }

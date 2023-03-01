@@ -1,6 +1,6 @@
 //при добавления нового инпута его аттрибут name надо добавить в type InputNames и в объект VALIDATORS с соответствующими паттерном и error message
 //все аттрибуты name (для инпутов) должны быть уникальны в рамках всего приложения
-export type InputNames = 'email' | 'phone' | 'login' | 'first_name' | 'second_name' | 'message' | 'password';
+export type InputNames = 'email' | 'phone' | 'login' | 'first_name' | 'second_name' | 'message' | 'password' | 'anotherpassword';
 
 type ValidationTuple = {
     regex : any;
@@ -27,6 +27,7 @@ export class Validator {
         'second_name' : {regex : /^[A-ZА-я][a-zа-я-]+$/,errorMessage : 'Фамилия должна содержать латиницу или кириллицу, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов'},
         'message' : {regex : /^\S+$/,errorMessage :'Не должно быть пустым'},
         'password' : {regex : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,errorMessage :'Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'},
+        'anotherpassword' : {regex : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,errorMessage :'Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'},
     }
 
     public static get Instance()

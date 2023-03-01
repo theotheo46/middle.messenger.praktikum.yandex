@@ -38,10 +38,6 @@ export class LoginPage extends Block<LoginPageProps> {
     this.children.inputs = [];
 
     for (const prop of this.props.inputs) {
-      prop.events = {
-              focus: () => {console.log('focus')},
-              blur: () => {console.log('blur')}
-            };
       this.children.inputs.push(new PlaceHolderInput(prop));
     }
 /*     this.props.events = {
@@ -74,7 +70,7 @@ export class LoginPage extends Block<LoginPageProps> {
     }
     else {
       console.log('Sending HTTP request');
-      new HTTPTRansport('').get();
+      new HTTPTRansport('').get(BlockUtility.queryStringify(inputNameVal));
     }
   }
 
