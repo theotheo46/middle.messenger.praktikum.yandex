@@ -1,6 +1,6 @@
 //при добавления нового инпута его аттрибут name надо добавить в type InputNames и в объект VALIDATORS с соответствующими паттерном и error message
 //все аттрибуты name (для инпутов) должны быть уникальны в рамках всего приложения
-export type InputNames = 'email' | 'phone' | 'login' | 'first_name' | 'second_name' | 'message' | 'password' | 'anotherpassword';
+export type InputNames = 'email' | 'phone' | 'login' | 'first_name' | 'second_name' | 'message' | 'password' | 'anotherpassword' | 'newpassword' | 'repnewpassword';
 
 type ValidationTuple = {
     regex : any;
@@ -28,6 +28,8 @@ export class Validator {
         'message' : {regex : /^\S+$/,errorMessage :'Не должно быть пустым'},
         'password' : {regex : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,errorMessage :'Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'},
         'anotherpassword' : {regex : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,errorMessage :'Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'},
+        'newpassword' : {regex : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,errorMessage :'Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'},
+        'repnewpassword' : {regex : /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,errorMessage :'Пароль должен быть от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'},
     }
 
     public static get Instance()

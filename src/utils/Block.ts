@@ -54,6 +54,14 @@ class Block<P extends Record<string, any> = any> {
     return {props: props as P, children};
   }
 
+    _removeEevents() {
+    const {events = {}} = this.props as P & { events: Record<string, () => void> };
+
+    Object.keys(events).forEach(eventName => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
   _addEvents() {
     const {events = {}} = this.props as P & { events: Record<string, () => void> };
 
@@ -122,6 +130,8 @@ class Block<P extends Record<string, any> = any> {
   }
 
   private _render() {
+
+    this._removeEevents();
     const fragment = this.render();
 
     const newElement = fragment.firstElementChild as HTMLElement;

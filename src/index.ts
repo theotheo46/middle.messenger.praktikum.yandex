@@ -104,12 +104,12 @@ function render(query: string, block: Block) {
             },
           ],
           inputs : [
-            {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name'},
-            {label : 'Фамилия', type : 'text', value : 'Иванов', name : 'second_name'},
-            {label : 'Логин', type : 'text', value : 'ivan101010', name : 'login'},
-            {label : 'Почта', type : 'text', value : 'theotheo46@gmail.com', name : 'email'},
-            {label : 'Имя в чате', type : 'text', value : 'Ванек', name : 'display_name'},
-            {label : 'Телефон', type : 'text', value : '8345657384', name : 'phone'},
+            {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name', errorText : ''},
+            {label : 'Фамилия', type : 'text', value : 'Иванов', name : 'second_name', errorText : ''},
+            {label : 'Логин', type : 'text', value : 'ivan101010', name : 'login', errorText : ''},
+            {label : 'Почта', type : 'text', value : 'theotheo46@gmail.com', name : 'email', errorText : ''},
+            {label : 'Имя в чате', type : 'text', value : 'Ванек', name : 'display_name', errorText : ''},
+            {label : 'Телефон', type : 'text', value : '8345657384', name : 'phone', errorText : ''},
           ]
         }
       );
@@ -124,12 +124,12 @@ function render(query: string, block: Block) {
         buttonCaption : 'Сохранить',
         links : [],
         inputs : [
-          {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name'},
-          {label : 'Фамилия', type : 'text', value : 'Иванов', name : 'second_name'},
-          {label : 'Логин', type : 'text', value : 'ivan101010', name : 'login'},
-          {label : 'Почта', type : 'text', value : 'theotheo46@gmail.com', name : 'email'},
-          {label : 'Имя в чате', type : 'text', value : 'Ванек', name : 'display_name'},
-          {label : 'Телефон', type : 'text', value : '8345657384', name : 'phone'},
+          {label : 'Имя', type : 'text', value : 'Иван', name : 'first_name', errorText : ''},
+          {label : 'Фамилия', type : 'text', value : 'Иванов', name : 'second_name', errorText : ''},
+          {label : 'Логин', type : 'text', value : 'ivan101010', name : 'login', errorText : ''},
+          {label : 'Почта', type : 'text', value : 'theotheo46@gmail.com', name : 'email', errorText : ''},
+          {label : 'Имя в чате', type : 'text', value : 'Ванек', name : 'display_name', errorText : ''},
+          {label : 'Телефон', type : 'text', value : '8345657384', name : 'phone', errorText : ''},
         ]
       }
     );
@@ -144,9 +144,9 @@ function render(query: string, block: Block) {
           avatar,
           buttonCaption : 'Сохранить',
           inputs : [
-            {label : 'Старый пароль', type : 'password', value : '12345', name : 'password'},
-            {label : 'Новый пароль', type : 'password', value : '1234567676', name : 'newpassword'},
-            {label : 'Новый пароль', type : 'password', value : '1234567676', name : 'repnewpassword'},
+            {label : 'Старый пароль', type : 'password', value : '12345', name : 'password', errorText : ''},
+            {label : 'Новый пароль', type : 'password', value : '1234567676', name : 'newpassword', errorText : ''},
+            {label : 'Новый пароль', type : 'password', value : '1234567676', name : 'repnewpassword', errorText : ''},
           ]
         }
       );
@@ -332,7 +332,8 @@ function render(query: string, block: Block) {
             href : '#',
             image : attachButton,
           },
-          messageInput: {type : 'text', placeholder : '', name : 'messageEntry'},
+          messageInput: {type : 'text', placeholder : '', name : 'message'},
+          errorText : '',
           enterLink: {
             href : '#',
             image : chatEnterButton,
