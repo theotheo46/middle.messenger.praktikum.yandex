@@ -8,8 +8,8 @@ interface ProfileSavePasswordPageProps {
   title: string;
   inputs : LabeledInputProps[],
   buttonCaption : string;      
-  left : any;
-  avatar : any;
+  left : unknown;
+  avatar : unknown;
 }
 
 export class ProfileSavePasswordPage extends Block<ProfileSavePasswordPageProps> {

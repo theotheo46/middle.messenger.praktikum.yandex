@@ -8,7 +8,7 @@ export enum Method {
   
   type Options = {
     method: Method;
-    data?: any;
+    data?: unknown;
   };
   
   export default class HTTPTransport {
@@ -87,6 +87,3 @@ export enum Method {
       });
     }
   }
-  
-
-//new HTTPTransport().get('https://chats'); 

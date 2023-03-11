@@ -1,7 +1,19 @@
+:root {
+    --container-border-color: blue;
+    --input-container-border-color: lightgray;
+    --input-font-family: arial, sans-serif;
+    --input-fg-color: black;
+    --errorinformer-color : red;
+    --button-bg-color : darkblue;
+    --button-fg-color : white;
+    --link-color : blue;
+    --chat-border-color: black;
+  }
+
 .container {
     margin: auto;
-    color: #000;
-    border: 1px outset blue;
+    color: var(--input-fg-color);
+    border: 1px outset var(--container-border-color);
     padding: 10px;
 }
 
@@ -35,7 +47,6 @@
     height: 900px;  
 }
 
-
 .profile_container_size {
     width: 550px;
     height: 800px;
@@ -46,39 +57,32 @@
     height: 250px; 
 }
 
-
 .profile_container__hr {
     width: 100%; 
 }
 
 .login_container__title, .registration_container__title, .profile_container__title {
-    font-family: Arial, sans-serif;
+    font-family: var(--input-font-family);
     text-align: center;
     font-size: 30px;
-    line-height: 24px;
     height: 15%;
 }
 
 .input_container {
-    font-family: Arial, sans-serif;
+    font-family: var(--input-font-family);
     text-align: left;
-    color: #000;
+    color: var(--input-fg-color);
     width: 90%;
 }
 
 .input_container__placeholder {
     font-size: 11px;
     line-height: 24px;
-    color: lightgrey;
+    color: var(--input-container-border-color);
 }
 
 .input_container__input {
-/*     border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-color: blue; */
-
-    border: 1px outset lightgray;
+    border: 1px outset var(--input-container-border-color);
     font-size: 15px;
     line-height: 28px;
     width: 100%;
@@ -87,9 +91,8 @@
 .errorinformer {
     font-size: 9px;
     line-height: 24px;
-    color: red;
+    color: var(--errorinformer-color);
 }
-
 
 .labeled_input_container {
     display: flex;
@@ -130,8 +133,8 @@
 .button {
     font-size: 20px;
     line-height: 24px;
-    background: darkblue;
-    color: white;
+    background: var(--button-bg-color);
+    color: var(--button-fg-color);
     width: 230px;
     height: 40px;
 }
@@ -143,18 +146,9 @@
     left: 40%;
 }
 
-/* .error_container__code {
-
-} */
-
 .error_container__stub {
     height : 20%;
 }
-
-/* .error_container__text {
-
-} */
-
 
 .profile_container__right {
     width: 78%;
@@ -170,29 +164,28 @@
     margin-top: 40%;
 }
 
-/* .fileupload_container__caption {
-
-} */
+.fileupload_container__caption {
+    color: var(--input-fg-color);
+}
 
 .fileupload_container__error_text {
-color: red;
+    color: var(--errorinformer-color);
 }
 
 .fileupload_container__file_name {
-color: grey;
+    color: var(--input-container-border-color);
 }
 
 .link {
     text-decoration: underline;
-    color : blue;
+    color : var(--link-color);
     cursor: pointer;
 }
 
 .chat_container {
-    border: 1px outset black;
+    border: 1px outset var(--chat-border-color);
     padding: 2px;
 }
-
 
 .chat_container_flex {
     display: flex;
@@ -223,14 +216,14 @@ color: grey;
 
 .chat_window__left_pane {
     width : 30%;
-    border: 1px outset black;
+    border: 1px outset var(--chat-border-color);
 }
 
 .chat_window__right_pane {
     display: flex;
     flex-direction: column;
     width : 70%;
-    border: 1px outset black;
+    border: 1px outset var(--chat-border-color);
 }
 
 .chat_window__right_pane_top {
@@ -246,12 +239,8 @@ color: grey;
     align-items: center;
 }
 
-/* .chat_window__right_pane_top_right {
-    
-} */
-
 .chat_window__right_pane_middle {
-    border: 1px outset black;
+    border: 1px outset var(--chat-border-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -268,14 +257,13 @@ color: grey;
    width : 95%;
 }
 
-
 .chat__title {
     font-size: 20px;
 }
 
 .chat__badge {
     font-size: 19px;
-    color: red;
+    color: var(--errorinformer-color);
 }
 
 .chat_window__profileLink {
@@ -283,10 +271,10 @@ color: grey;
 }
 
 .chat__message {
-    white-space: nowrap; /* Запрещаем перенос строк */
-    overflow: hidden; /* Обрезаем все, что не помещается в область */
-    padding: 5px; /* Поля вокруг текста */
-    text-overflow: ellipsis; /* Добавляем многоточие */
+    white-space: nowrap;
+    overflow: hidden; 
+    padding: 5px; 
+    text-overflow: ellipsis; 
 }
 
 .refpicpopup_flex {

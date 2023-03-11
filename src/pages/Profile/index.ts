@@ -10,8 +10,8 @@ interface ProfilePageProps {
   inputs : LabeledInputProps[],
   links : LinkProps[];
   buttonCaption : string;      //links and button are mutual exclusive
-  left : any;
-  avatar : any;
+  left : unknown;
+  avatar : unknown;
   isSave : boolean;   // if true - profileSave window (with button) if false - profile page with three links
 }
 

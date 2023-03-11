@@ -5,7 +5,7 @@ import * as styles from '../../styles.module.pcss';
 export interface LinkProps {
   label?: string;
   href : string;
-  image? : any;
+  image? : unknown;
   name? : string;
   alt? : string;
 }

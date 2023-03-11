@@ -3,7 +3,7 @@
 export type InputNames = 'email' | 'phone' | 'login' | 'first_name' | 'second_name' | 'message' | 'password' | 'anotherpassword' | 'newpassword' | 'repnewpassword';
 
 type ValidationTuple = {
-    regex : any;
+    regex : string | RegExp;
     errorMessage : string;
 }
 
@@ -41,7 +41,7 @@ export class Validator {
         return this._check(value, this.VALIDATORS[name].regex);   
     }
 
-    private _check(value : string, regexp : any) : boolean {
+    private _check(value : string, regexp : string | RegExp) : boolean {
         return (value.match(regexp) !== null);
     }
 

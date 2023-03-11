@@ -5,7 +5,7 @@ import * as styles from '../../styles.module.pcss';
 
 
 export interface ChatProps {
-  avatar : any;
+  avatar : unknown;
   title : string;
   datetime : string;
   message : string;

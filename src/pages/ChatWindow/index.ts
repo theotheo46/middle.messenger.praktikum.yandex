@@ -11,7 +11,7 @@ interface ChatWindowProps {
   profileLink: LinkProps;
   searchInput: InputProps;
   chats : ChatProps[],
-  avatar : any,
+  avatar : unknown,
   addRemoveLink : LinkProps,
   title: string,
   attachLink: LinkProps,
