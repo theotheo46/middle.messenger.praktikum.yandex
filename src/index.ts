@@ -44,7 +44,7 @@ function render(query: string, block: Block) {
           title : 'Вход',
           link : {
             label: 'Нет аккаунта?',
-            href : '#',
+            to : '#',
             name : 'loginref',
           },
           buttonCaption : 'Авторизоваться',
@@ -72,7 +72,7 @@ function render(query: string, block: Block) {
           buttonCaption : 'Зарегистрироваться',     
           link : {
             label: 'Войти',
-            href : '#',
+            to : '#',
             name : 'enterref',
           }
         }
@@ -89,17 +89,17 @@ function render(query: string, block: Block) {
           links : [
             {
               label: 'Изменить данные',
-              href : '#',
+              to : '#',
               name : 'datachref',
             },
             {
               label: 'Изменить пароль',
-              href : '#',
+              to : '#',
               name : 'passchref',
             },
             {
               label: 'Выйти',
-              href : '#',
+              to : '#',
               name : 'exitref',
             },
           ],
@@ -162,7 +162,7 @@ function render(query: string, block: Block) {
           buttonCaption : 'Поменять',
           fileLink : {
             label: 'Выбрать файл на компьютере',
-            href : '#',
+            to : '#',
             name : 'choiceref',
           }
         }
@@ -179,7 +179,7 @@ function render(query: string, block: Block) {
           fileName : 'pic.jpg',
           fileLink : {
             label: '',
-            href : '#',
+            to : '#',
             name : 'enterref',
           }
         }
@@ -194,7 +194,7 @@ function render(query: string, block: Block) {
           buttonCaption : 'Поменять',
           fileLink : {
             label: 'Выбрать файл на компьютере',
-            href : '#',
+            to : '#',
             name : 'enterref',
           }
         }
@@ -225,7 +225,7 @@ function render(query: string, block: Block) {
     case '404':
       page = new ErrorPage({errorCode : 404, errorText : 'Не туда попали', link : {
         label: 'Назад к чатам',
-        href : '#',
+        to : '#',
         name : 'returnref',
       }});
       render('#app', page);
@@ -233,7 +233,7 @@ function render(query: string, block: Block) {
     case '500':
       page = new ErrorPage({errorCode : 500, errorText : 'Мы уже фиксим', link : {
         label: 'Назад к чатам',
-        href : '#',
+        to : '#',
         name : 'returnref',
       }});
       render('#app', page);
@@ -242,17 +242,17 @@ function render(query: string, block: Block) {
       page = new RefPicPopup({links : [
       {
         label: 'Фото или видеo',
-        href : '#',
+        to : '#',
         image : photoOrVideoAttachment
       },
       {
         label: 'Файл',
-        href : '#',
+        to : '#',
         image : fileAttachment
       },  
       {
         label: 'Локация',
-        href : '#',
+        to : '#',
         image : locationAttachment
       },    
     ]
@@ -263,12 +263,12 @@ function render(query: string, block: Block) {
       page = new RefPicPopup({links : [
       {
         label: 'Добавить пользователя',
-        href : '#',
+        to : '#',
         image : addUser
       },
       {
         label: 'Удалить пользователя',
-        href : '#',
+        to : '#',
         image : removeUser
       }  
     ]
@@ -280,7 +280,7 @@ function render(query: string, block: Block) {
         {
           profileLink : {
             label: 'Профиль>',
-            href : '#',
+            to : '#',
             name : 'enterref',
           },
           searchInput : {type : 'text', placeholder : 'Поиск', name : 'Search'},
@@ -324,18 +324,18 @@ function render(query: string, block: Block) {
           ],
           avatar,
           addRemoveLink : {
-            href : '#',
+            to : '#',
             image : addRemoveUserButton,
           },
           title: 'Дмитрий',
           attachLink: {
-            href : '#',
+            to : '#',
             image : attachButton,
           },
           messageInput: {type : 'text', placeholder : '', name : 'message'},
           errorText : '',
           enterLink: {
-            href : '#',
+            to : '#',
             image : chatEnterButton,
           },
         }

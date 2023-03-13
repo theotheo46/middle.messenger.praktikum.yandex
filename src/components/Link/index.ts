@@ -7,7 +7,7 @@ export interface LinkProps {
   name? : string;
   alt? : string;
   to: string;
-  label: string;
+  label?: string;
   events?: {
     click: () => void;
   };
