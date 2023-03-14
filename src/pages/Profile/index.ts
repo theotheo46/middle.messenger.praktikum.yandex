@@ -4,45 +4,70 @@ import {LabeledInput, LabeledInputProps} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profile.hbs';
 import * as styles from '../../styles.module.pcss';
+import AuthController from '../../controllers/AuthController';
+import { withStore } from '../../utils/Store';
 
-interface ProfilePageProps {
-  title: string;
-  inputs : LabeledInputProps[],
-  links : LinkProps[];
-  buttonCaption : string;      //links and button are mutual exclusive
-  left : unknown;
-  avatar : unknown;
-  isSave : boolean;   // if true - profileSave window (with button) if false - profile page with three links
-}
+export class ProfilePageProto extends Block {
+  init() {
+    AuthController.fetchUser();
 
-export class ProfilePage extends Block<ProfilePageProps> {
-  constructor(props: ProfilePageProps) {
-    super(props);
-  }
+    this.children.firstName = new LabeledInput({
+      name: 'first_name',
+      type: 'text',
+      label: 'Имя',
+      errorText: ''
+    });
 
-  protected init() {
+    this.children.secondName = new LabeledInput({
+      name: 'second_name',
+      type: 'text',
+      label: 'Фамилия',
+      errorText: ''
+    });
 
-    this.children.inputs = [];
-    this.children.links = [];
+    this.children.login = new LabeledInput({
+      name: 'login',
+      type: 'text',
+      label: 'Логин',
+      errorText: ''
+    });
 
-    for (const prop of this.props.inputs) {
-      this.children.inputs.push(new LabeledInput(prop));
-    }
+    this.children.email = new LabeledInput({
+      name: 'email',
+      type: 'text',
+      label: 'Почта',
+      errorText: ''
+    });
 
-    if (this.props.isSave) {
-      this.children.button = new Button({
-        label: this.props.buttonCaption,
-      });
-    }
-    else {
-      for (const prop of this.props.links) {
-        this.children.links.push(new Link(prop));
+    this.children.display_name = new LabeledInput({
+      name: 'display_name',
+      type: 'text',
+      label: 'Имя в чате',
+      errorText: ''
+    });
+
+    this.children.phone = new LabeledInput({
+      name: 'phone',
+      type: 'text',
+      label: 'Телефон',
+      errorText: ''
+    });
+
+    this.children.button = new Button({
+      label: 'Выйти',
+      events: {
+        click: () => {
+          AuthController.logout();
+        }
       }
-    }
-
+    })
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {...this.props, styles});
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }))
+
+export const ProfilePage = withUser(ProfilePageProto);

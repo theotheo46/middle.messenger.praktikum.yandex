@@ -1,8 +1,9 @@
 import Block from '../../utils/Block';
 import template from './link.hbs';
+import { PropsWithRouter, withRouter } from '../../utils/withRouter';
 import * as styles from '../../styles.module.pcss';
 
-export interface LinkProps {
+export interface LinkProps extends PropsWithRouter {
   image? : unknown;
   name? : string;
   alt? : string;
@@ -14,7 +15,7 @@ export interface LinkProps {
 
 }
 
-export class Link extends Block<LinkProps> {
+export class LinkProto extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({...props,
       events: {
@@ -24,7 +25,7 @@ export class Link extends Block<LinkProps> {
   }
 
   navigate() {
-    console.log('In navigate');
+    this.props.router.go(this.props.to);
   }
 
   render() {
@@ -32,3 +33,4 @@ export class Link extends Block<LinkProps> {
   }
 }
 
+export const Link = withRouter(LinkProto);

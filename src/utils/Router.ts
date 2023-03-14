@@ -74,7 +74,6 @@ class Router {
 
       this._onRoute(target.location.pathname);
     }
-
     this._onRoute(window.location.pathname);
   }
 
@@ -84,13 +83,10 @@ class Router {
     if (!route) {
       return;
     }
-
     if (this.currentRoute && this.currentRoute !== route) {
       this.currentRoute.leave();
     }
-
     this.currentRoute = route;
-
     route.render();
   }
 

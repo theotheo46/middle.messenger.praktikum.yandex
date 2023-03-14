@@ -1,59 +1,65 @@
 import Block from '../../utils/Block';
-import {Link, LinkProps} from '../../components/Link';
-import {PlaceHolderInput, PlaceHolderInputProps} from '../../components/PlaceHolderInput';
+import {Link} from '../../components/Link';
+import {PlaceHolderInput} from '../../components/PlaceHolderInput';
 import {Button} from '../../components/Button';
 import template from './login.hbs';
 import {Validator, InputNames} from '../../utils/Validator';
-import HTTPTRansport from '../../utils/HTTPTRansport';
+import HTTPTransport from '../../utils/HTTPTransport';
 import { BlockUtility} from '../../utils/BlockUtility';
 import * as styles from '../../styles.module.pcss';
+import AuthController from '../../controllers/AuthController';
+import { SignupData } from '../../api/AuthAPI';
 
-interface LoginPageProps {
-  title: string;
-  inputs : PlaceHolderInputProps[],
-  link : LinkProps;
-  buttonCaption : string;
-/*   events?: {
-    submit: () => void;
-  }; */
-}
-
-export class LoginPage extends Block<LoginPageProps> {
-  constructor(props: LoginPageProps) {
-    super(props);
+export class LoginPage extends Block {
+  constructor() {
+    super({});
   }
 
   private readonly validator = Validator.Instance; 
 
-  protected init() {
-    this.children.link = new Link(this.props.link);
+ init() {
 
-    this.children.button = new Button({
-      label: this.props.buttonCaption,
-      events : {
-        click: this.onClick.bind(this),
-      }
+    this.props.title = 'Войти';
+
+    this.children.link = new Link({
+      label: 'Нет аккаунта?',
+      to: '/register'
     });
 
-    this.children.inputs = [];
+    this.children.login = new PlaceHolderInput({
+      name: 'login',
+      type: 'text',
+      placeholder: 'Логин',
+      errorText: ''
+    });
 
-    for (const prop of this.props.inputs) {
-      this.children.inputs.push(new PlaceHolderInput(prop));
-    }
-/*     this.props.events = {
-        submit : this.onSubmit
-    } */
+    this.children.password = new PlaceHolderInput({
+      name: 'password',
+      type: 'password',
+      placeholder: 'Пароль',
+      errorText: ''
+    });
+
+    this.children.button = new Button({
+      label: 'Авторизоваться',
+      events: {
+        click: () => this.onSubmit()
+      },
+    });
+
+
+  }
+ 
+  onSubmit() {
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof PlaceHolderInput)
+      .map((child) => ([(child as PlaceHolderInput).getName(), (child as PlaceHolderInput).getValue()]))
+    const data = Object.fromEntries(values);
+    AuthController.signin(data as SignupData);
   }
 
-
-/*   onSubmit() {
-      console.log('submit');
-      return false;
-  }
- */
-
-
-  onClick() {
+/*   onClick() {
 
     let errStr = '';
 
@@ -70,10 +76,10 @@ export class LoginPage extends Block<LoginPageProps> {
     }
     else {
       console.log('Sending HTTP request');
-      new HTTPTRansport('').get(BlockUtility.queryStringify(inputNameVal));
+      new HTTPTransport('').get(BlockUtility.queryStringify(inputNameVal));
     }
   }
-
+ */
 
   render() {
     return this.compile(template, { ...this.props, styles });

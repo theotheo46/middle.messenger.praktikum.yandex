@@ -9,16 +9,18 @@
             </center>
         </div>
         <div class="{{styles.profile_container__title}}">{{title}}</div>
-        {{#each inputs}}
-            {{{this}}}
+            {{{ first_name }}} 
             <div class="{{styles.profile_container__hr}}"><hr></div>
-        {{/each}}
-        {{#if isSave }}
-            <div><center>{{{button}}}</center></div>
-        {{else}}
-        {{#each links}}
-            <div><center>{{{this}}}</center></div>
-        {{/each}}
-        {{/if}}
+            {{{ second_name }}}
+            <div class="{{styles.profile_container__hr}}"><hr></div>
+            {{{ login }}}
+            <div class="{{styles.profile_container__hr}}"><hr></div>
+            {{{ email }}}
+            <div class="{{styles.profile_container__hr}}"><hr></div>
+            {{{ display_name }}}
+            <div class="{{styles.profile_container__hr}}"><hr></div>
+            {{{ phone }}}
+            <div class="{{styles.profile_container__hr}}"><hr></div>
+            {{{ button }}}
     </div>
 </from>
