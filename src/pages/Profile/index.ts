@@ -10,50 +10,74 @@ import { withStore } from '../../utils/Store';
 export class ProfilePageProto extends Block {
   init() {
     AuthController.fetchUser();
-
-    this.children.firstName = new LabeledInput({
+    this.children.first_name = new LabeledInput({
       name: 'first_name',
       type: 'text',
       label: 'Имя',
-      errorText: ''
+      errorText: '',
+      value: this.props.first_name
     });
 
-    this.children.secondName = new LabeledInput({
+    this.children.second_name = new LabeledInput({
       name: 'second_name',
       type: 'text',
       label: 'Фамилия',
-      errorText: ''
+      errorText: '',
+      value: this.props.second_name
     });
 
     this.children.login = new LabeledInput({
       name: 'login',
       type: 'text',
       label: 'Логин',
-      errorText: ''
+      errorText: '',
+      value: this.props.login
     });
 
     this.children.email = new LabeledInput({
       name: 'email',
       type: 'text',
       label: 'Почта',
-      errorText: ''
+      errorText: '',
+      value: this.props.email
     });
 
     this.children.display_name = new LabeledInput({
       name: 'display_name',
       type: 'text',
       label: 'Имя в чате',
-      errorText: ''
+      errorText: '',
+      value: this.props.display_name
     });
 
     this.children.phone = new LabeledInput({
       name: 'phone',
       type: 'text',
       label: 'Телефон',
-      errorText: ''
+      errorText: '',
+      value: this.props.phone
     });
 
-    this.children.button = new Button({
+    this.children.buttonSave = new Button({
+      label: 'Сохранить',
+      events: {
+        click: () => {
+          AuthController.logout();
+        }
+      }
+    })
+
+    this.children.linkChangeData = new Link({
+      label: 'Изменить данные',
+      to: '/profilesave'
+    });
+
+    this.children.linkChangePassword = new Link({
+      label: 'Изменить пароль',
+      to: '/profilesavepassword'
+    });
+
+    this.children.buttonExit = new Button({
       label: 'Выйти',
       events: {
         click: () => {
@@ -68,6 +92,8 @@ export class ProfilePageProto extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }))
+const withUserIsNotSave = withStore((state) => ({ ...state.user, isSave: false }))
+const withUserIsSave = withStore((state) => ({ ...state.user, isSave: true }))
 
-export const ProfilePage = withUser(ProfilePageProto);
+export const ProfilePageIsNotSave = withUserIsNotSave(ProfilePageProto);
+export const ProfilePageIsSave = withUserIsSave(ProfilePageProto);

@@ -21,6 +21,12 @@
             <div class="{{styles.profile_container__hr}}"><hr></div>
             {{{ phone }}}
             <div class="{{styles.profile_container__hr}}"><hr></div>
-            {{{ button }}}
+            {{#if isSave }}
+                <div><center>{{{buttonSave}}}</center></div>
+            {{else}}
+                <div>{{{ linkChangeData }}}</div>
+                <div>{{{ linkChangePassword }}}</div>
+                <div>{{{ buttonExit }}}</div>
+            {{/if}}
     </div>
 </from>

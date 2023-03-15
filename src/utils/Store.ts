@@ -33,6 +33,9 @@ export function withStore(mapStateToProps: (state: any) => any) {
       constructor(props: any) {
         previousState = mapStateToProps(store.getState());
 
+        console.log(props);
+        console.log(previousState);
+
         super({ ...props, ...previousState });
 
         store.on(StoreEvents.Updated, () => {

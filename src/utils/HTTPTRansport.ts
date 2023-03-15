@@ -64,7 +64,7 @@ export enum Method {
             if (xhr.status < 400) {
               resolve(xhr.response);
             } else {
-              reject(xhr.response);
+              reject(xhr);
             }
           }
         };

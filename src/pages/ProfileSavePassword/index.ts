@@ -1,33 +1,47 @@
 import Block from '../../utils/Block';
-import {LabeledInput, LabeledInputProps} from '../../components/LabeledInput';
+import {LabeledInput} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profileSavePassword.hbs';
 import * as styles from '../../styles.module.pcss';
+import { withStore } from '../../utils/Store';
 
-interface ProfileSavePasswordPageProps {
-  title: string;
-  inputs : LabeledInputProps[],
-  buttonCaption : string;      
-  left : unknown;
-  avatar : unknown;
-}
 
-export class ProfileSavePasswordPage extends Block<ProfileSavePasswordPageProps> {
-  constructor(props: ProfileSavePasswordPageProps) {
-    super(props);
-  }
+export class ProfileSavePasswordPageProto extends Block {
+
 
   protected init() {
 
-    this.children.inputs = [];
-
-    for (const prop of this.props.inputs) {
-      this.children.inputs.push(new LabeledInput(prop));
-    }
-   
-    this.children.button = new Button({
-      label: this.props.buttonCaption,
+ 
+    this.children.oldpassword = new LabeledInput({
+      name: 'oldpassword',
+      type: 'password',
+      label: 'Старый пароль',
+      errorText: '',
     });
+
+    this.children.newpassword = new LabeledInput({
+      name: 'newpassword',
+      type: 'password',
+      label: 'Новый пароль',
+      errorText: '',
+    });
+
+    this.children.repnewpassword = new LabeledInput({
+      name: 'repnewpassword',
+      type: 'password',
+      label: 'Повторите новый пароль',
+      errorText: '',
+    });
+
+
+    this.children.buttonSave = new Button({
+      label: 'Сохранить',
+      events: {
+        click: () => {
+          
+        }
+      }
+    })
    
   }
 
@@ -35,3 +49,7 @@ export class ProfileSavePasswordPage extends Block<ProfileSavePasswordPageProps>
     return this.compile(template, { ...this.props, styles });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user}))
+
+export const ProfileSavePassword = withUser(ProfileSavePasswordPageProto);

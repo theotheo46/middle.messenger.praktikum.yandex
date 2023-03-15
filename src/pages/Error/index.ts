@@ -2,23 +2,24 @@ import Block from '../../utils/Block';
 import {Link, LinkProps} from '../../components/Link';
 import template from './error.hbs';
 import * as styles from '../../styles.module.pcss';
+import { withStore } from '../../utils/Store';
 
-interface ErrorPageProps {
-  errorText: string;
-  errorCode: number;
-  link : LinkProps;
-}
 
-export class ErrorPage extends Block<ErrorPageProps> {
-  constructor(props: ErrorPageProps) {
-    super(props);
-  }
-
+export class ErrorPageProto extends Block {
+  
   protected init() {
-    this.children.link = new Link(this.props.link);
+    this.children.link = new Link({
+      label: 'Назад',
+      to: '/'
+    });
+
   }
 
   render() {
     return this.compile(template, { ...this.props, styles });
   }
 }
+
+const withError = withStore((state) => ({ ...state.error }))
+
+export const ErrorPage = withError(ErrorPageProto);

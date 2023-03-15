@@ -1,4 +1,4 @@
-import API, { AuthAPI, SigninData, SignupData } from '../api/AuthAPI';
+import API, { AuthAPI, SigninData, SignupData, UserProfile } from '../api/AuthAPI';
 import store from '../utils/Store';
 import router from '../utils/Router';
 
@@ -9,10 +9,13 @@ export class AuthController {
     this.api = API;
   }
 
+  async saveprofile(data: UserProfile) {
+    
+  }
+
   async signin(data: SigninData) {
     try {
       await this.api.signin(data);
-
       router.go('/profile');
     } catch (e: any) {
       console.error(e);
