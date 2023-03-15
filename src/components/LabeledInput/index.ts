@@ -40,6 +40,14 @@ export class LabeledInput extends Block<LabeledInputProps> {
     }
   }
 
+  public getName() {
+    return ((this.children.input as Input).getContent() as HTMLInputElement).name;
+  }
+
+  public getValue() {
+    return ((this.children.input as Input).getContent() as HTMLInputElement).value;
+  }
+
   render() {
     return this.compile(template, { ...this.props, styles });
   }

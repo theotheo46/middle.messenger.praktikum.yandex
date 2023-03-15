@@ -1,4 +1,4 @@
-import API, { AuthAPI, SigninData, SignupData, UserProfile } from '../api/AuthAPI';
+import API, { AuthAPI, SigninData, SignupData} from '../api/AuthAPI';
 import store from '../utils/Store';
 import router from '../utils/Router';
 
@@ -9,16 +9,15 @@ export class AuthController {
     this.api = API;
   }
 
-  async saveprofile(data: UserProfile) {
-    
-  }
-
   async signin(data: SigninData) {
     try {
       await this.api.signin(data);
       router.go('/profile');
     } catch (e: any) {
-      console.error(e);
+      console.error(e.status);
+      console.error(e.response.reason);
+      store.set('error', {errorCode: e.status, errorText: e.response.reason});
+      router.go('/error');
     }
   }
 
@@ -30,7 +29,10 @@ export class AuthController {
 
       router.go('/profile');
     } catch (e: any) {
-      console.error(e.message);
+      console.error(e.status);
+      console.error(e.response.reason);
+      store.set('error', {errorCode: e.status, errorText: e.response.reason});
+      router.go('/error');
     }
   }
 

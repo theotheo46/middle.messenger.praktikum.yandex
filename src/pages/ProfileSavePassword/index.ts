@@ -4,6 +4,8 @@ import {Button} from '../../components/Button';
 import template from './profileSavePassword.hbs';
 import * as styles from '../../styles.module.pcss';
 import { withStore } from '../../utils/Store';
+import UserController from '../../controllers/UserController';
+import { Password } from '../../api/UserAPI';
 
 
 export class ProfileSavePasswordPageProto extends Block {
@@ -12,22 +14,22 @@ export class ProfileSavePasswordPageProto extends Block {
   protected init() {
 
  
-    this.children.oldpassword = new LabeledInput({
-      name: 'oldpassword',
+    this.children.oldPassword = new LabeledInput({
+      name: 'oldPassword',
       type: 'password',
       label: 'Старый пароль',
       errorText: '',
     });
 
-    this.children.newpassword = new LabeledInput({
-      name: 'newpassword',
+    this.children.newPassword = new LabeledInput({
+      name: 'newPassword',
       type: 'password',
       label: 'Новый пароль',
       errorText: '',
     });
 
-    this.children.repnewpassword = new LabeledInput({
-      name: 'repnewpassword',
+    this.children.repnewPassword = new LabeledInput({
+      name: 'repnewPassword',
       type: 'password',
       label: 'Повторите новый пароль',
       errorText: '',
@@ -37,12 +39,30 @@ export class ProfileSavePasswordPageProto extends Block {
     this.children.buttonSave = new Button({
       label: 'Сохранить',
       events: {
-        click: () => {
-          
-        }
+        click: () => this.onPasswordSave()
       }
     })
    
+  }
+
+  onPasswordSave() {
+
+    console.log((this.children.newPassword as LabeledInput).getValue() );
+    console.log((this.children.repnewPassword as LabeledInput).getValue() );
+
+    if ((this.children.newPassword as LabeledInput).getValue() !== (this.children.repnewPassword as LabeledInput).getValue())
+    {
+      alert('Новые пароли не совпадают')
+      return;
+    }
+    
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof LabeledInput)
+      .filter(child => (child as LabeledInput).getName() !== 'repnewPassword')   
+      .map((child) => ([(child as LabeledInput).getName(), (child as LabeledInput).getValue()]))
+    const data = Object.fromEntries(values);
+    UserController.savepassword(data as Password);
   }
 
   render() {

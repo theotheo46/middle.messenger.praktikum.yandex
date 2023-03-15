@@ -5,7 +5,9 @@ import {Button} from '../../components/Button';
 import template from './profile.hbs';
 import * as styles from '../../styles.module.pcss';
 import AuthController from '../../controllers/AuthController';
+import UserController from '../../controllers/UserController';
 import { withStore } from '../../utils/Store';
+import { UserProfile } from '../../api/UserAPI';
 
 export class ProfilePageProto extends Block {
   init() {
@@ -61,9 +63,7 @@ export class ProfilePageProto extends Block {
     this.children.buttonSave = new Button({
       label: 'Сохранить',
       events: {
-        click: () => {
-          AuthController.logout();
-        }
+        click: () => this.onProfileSave()
       }
     })
 
@@ -85,6 +85,15 @@ export class ProfilePageProto extends Block {
         }
       }
     })
+  }
+
+  onProfileSave() {
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof LabeledInput)
+      .map((child) => ([(child as LabeledInput).getName(), (child as LabeledInput).getValue()]))
+    const data = Object.fromEntries(values);
+    UserController.saveprofile(data as UserProfile);
   }
 
   render() {

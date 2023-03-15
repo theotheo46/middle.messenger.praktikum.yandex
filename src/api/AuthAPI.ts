@@ -25,14 +25,6 @@ export interface User {
   avatar: string;
 }
 
-export interface UserProfile {
-  first_name: string;
-  second_name: string;
-  display_name: string;
-  login: string;
-  email: string;
-  phone: string;
-}
 
 export class AuthAPI extends BaseAPI {
   constructor() {
