@@ -47,6 +47,15 @@ export class LoginPage extends Block {
       },
     });
 
+    this.children.buttonExit = new Button({
+      label: 'Выйти',
+      events: {
+        click: () => {
+          AuthController.logout();
+        }
+      }
+    })
+
 
   }
  

@@ -5,47 +5,54 @@ import {Chat, ChatProps} from '../../components/Chat';
 import { ErrorInformer} from '../../components/ErrorInformer';
 import {Validator, InputNames} from '../../utils/Validator';
 import template from './chatwindow.hbs';
+import threepoints from '../../../static/threepoints.png';
+import attachment from '../../../static/Attachment.png';
+import chatEnter from '../../../static/ChatEnter.png';
+import { withStore } from '../../utils/Store';
 import * as styles from '../../styles.module.pcss';
 
-interface ChatWindowProps {
-  profileLink: LinkProps;
-  searchInput: InputProps;
-  chats : ChatProps[],
-  avatar : unknown,
-  addRemoveLink : LinkProps,
-  title: string,
-  attachLink: LinkProps,
-  messageInput: InputProps,
-  errorText: string;
-  enterLink: LinkProps,
-}
-
-export class ChatWindow extends Block<ChatWindowProps> {
-  constructor(props: ChatWindowProps) {
-    super(props);
-  }
-
+export class ChatWindowProto extends Block {
   private readonly validator = Validator.Instance; 
 
   protected init() {
-    this.children.profileLink = new Link(this.props.profileLink);
-    this.children.addRemoveLink = new Link(this.props.addRemoveLink);
-    this.children.searchInput = new Input(this.props.searchInput);
-    this.children.messageInput = new Input({...this.props.messageInput,
+    this.children.profileLink = new Link({
+      label: 'Профиль >',
+      to: '/profile'
+    });
+
+    this.children.addRemoveLink = new Link({
+      image: threepoints,
+      to: '/addremoveuser'
+    });
+
+    this.children.searchInput = new Input({type : 'text', placeholder : 'Поиск', name : 'Search'});
+    this.children.messageInput = new Input({type : 'text', placeholder : '', name : 'message',
       events: {
         focus: () => this._validate(),
         blur:  () => this._validate(),
       }
     });
-    this.children.attachLink = new Link(this.props.attachLink);
-    this.children.enterLink = new Link(this.props.enterLink);
+     
+    this.children.attachLink = new Link({
+      image: attachment,
+      to: '/attach'
+    });
+
+    this.children.enterLink = new Link({
+      image: chatEnter,
+      noNavigate : true,
+      events: {
+        click: () => {console.log('enterLink click')} 
+      },
+    });
+
     this.children.chats = [];
 
-    for (const chatProp of this.props.chats) {
+   /*  for (const chatProp of this.props.chats) {
       this.children.chats.push(new Chat(chatProp));
-    }
+    } */
 
-    this.children.errorinformer = new ErrorInformer({text : this.props.errorText})
+    this.children.errorinformer = new ErrorInformer({text : ''})
   }
 
 
@@ -66,3 +73,7 @@ export class ChatWindow extends Block<ChatWindowProps> {
     return this.compile(template, { ...this.props, styles });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user}))
+
+export const ChatWindow = withUser(ChatWindowProto);

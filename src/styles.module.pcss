@@ -75,8 +75,8 @@
 .input_container {
     font-family: var(--input-font-family);
     text-align: left;
-    color: var(--input-fg-color);
-    width: 90%;
+    color: var(--input-fg-color);       
+    width: 100%;
 }
 
 .input_container__placeholder {
@@ -89,7 +89,7 @@
     border: 1px outset var(--input-container-border-color);
     font-size: 15px;
     line-height: 28px;
-    width: 100%;
+    width: 200px;
 }
 
 .errorinformer {
@@ -298,3 +298,48 @@
     height: 80px;
 }
 
+.messenger {
+    display: flex;
+    flex-flow: column nowrap;
+
+    width: 100%;
+    padding: 10px 30px;
+}
+
+.messenger__messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.messenger__footer {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+
+    margin-top: auto;
+}
+
+.messenger__footer input {
+    width: 100%;
+    border-radius: 0;
+}
+
+.messenger__footer button {
+    margin-left: auto;
+}
+
+.message {
+    padding: 15px 10px;
+    margin: 15px 0;
+
+    max-width: 150px;
+
+    background: #e9ffff;
+
+    border-radius: 6px;
+}
+
+.message--mine {
+  align-self: flex-end;
+  background: #cdc1f1;
+}

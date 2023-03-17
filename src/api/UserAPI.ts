@@ -15,6 +15,7 @@ export interface Password {
     newPassword: string;
   }
 
+
 export class UserAPI extends BaseAPI {
   constructor() {
     super('/user');
@@ -22,6 +23,10 @@ export class UserAPI extends BaseAPI {
 
   saveprofile(data: UserProfile) {
     return this.http.put('/profile', data);
+  }
+
+  saveavatar(data: FormData) {
+    return this.http.put('/profile/avatar', data);
   }
 
   savepassword(data: Password) {

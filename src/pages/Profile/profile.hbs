@@ -1,11 +1,15 @@
 <form class="{{styles.container}} {{styles.container_profile_flex}} {{styles.profile_container_size}}">
     <div class="{{styles.profile_container__left}}">
-        <a href="#"><img src="{{left}}"></a>
+        {{{ linkLeft }}}
     </div>
     <div class="{{styles.profile_container__right}}">
         <div class="{{styles.profile_container__image}}">
             <center>
-                </p><img src="{{avatar}}" name="avatar" alt="Поменять аватар" title="Поменять аватар">
+                <span><img src="{{avatar}}" id="avatar_id" name="avatar" alt="Аватар"></span><span>{{display_name_label}}</span>
+                {{#if isSave }}
+                    <label for="avatar">Поменять аватар</label>
+                    <input type="file" id="avatar_file_name_id" name="avatar_file_name" accept="image/png, image/jpeg">
+                {{/if}}
             </center>
         </div>
         <div class="{{styles.profile_container__title}}">{{title}}</div>
@@ -26,6 +30,7 @@
             {{else}}
                 <div>{{{ linkChangeData }}}</div>
                 <div>{{{ linkChangePassword }}}</div>
+                <div>{{{ linkToMessenger }}}</div>
                 <div>{{{ buttonExit }}}</div>
             {{/if}}
     </div>

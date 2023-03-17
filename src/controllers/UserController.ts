@@ -16,10 +16,12 @@ export class UserController {
       await AuthController.fetchUser();
       router.go('/profile');
     } catch (e: any) {
-        console.error(e.status);
-        console.error(e.response.reason);
-        store.set('error', {errorCode: e.status, errorText: e.response.reason});
-        router.go('/error');
+      let errorText = 'Internal sever error';
+      if ('response' in e && 'reason' in e.response) {
+        errorText = e.response.reason;
+      }
+      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
+      router.go('/error');
     }
   }
 
@@ -29,9 +31,26 @@ export class UserController {
       await AuthController.fetchUser();
       router.go('/profile');
     } catch (e: any) {
-        console.error(e.status);
-        console.error(e.response.reason);
-        store.set('error', {errorCode: e.status, errorText: e.response.reason});
+      let errorText = 'Internal sever error';
+      if ('response' in e && 'reason' in e.response) {
+        errorText = e.response.reason;
+      }
+      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
+      router.go('/error');
+    }
+  }
+
+  async saveavatar(data: FormData) {
+    try {
+      await this.api.saveavatar(data);
+      await AuthController.fetchUser();
+      router.go('/profile');
+    } catch (e: any) {
+        let errorText = 'Internal sever error';
+        if ('response' in e && 'reason' in e.response) {
+          errorText = e.response.reason;
+        }
+        store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
         router.go('/error');
     }
   }

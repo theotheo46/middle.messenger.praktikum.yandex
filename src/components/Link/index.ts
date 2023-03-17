@@ -9,6 +9,8 @@ export interface LinkProps extends PropsWithRouter {
   alt? : string;
   to: string;
   label?: string;
+  isBack?: boolean;
+  noNavigate?: boolean;
   events?: {
     click: () => void;
   };
@@ -17,15 +19,25 @@ export interface LinkProps extends PropsWithRouter {
 
 export class LinkProto extends Block<LinkProps> {
   constructor(props: LinkProps) {
-    super({...props,
-      events: {
-        click: () => this.navigate()
-      },
-    });
+      if (props.noNavigate === undefined || props.noNavigate == false) {
+        super({...props,
+            events: {
+              click: () => this.navigate()
+            },
+          });
+    }
+    else {
+      super(props);
+    }
   }
 
   navigate() {
-    this.props.router.go(this.props.to);
+    if ((this.props.isBack===undefined) || (!this.props.isBack)) {
+      this.props.router.go(this.props.to);
+    }
+    else {
+      this.props.router.back();
+    }
   }
 
   render() {

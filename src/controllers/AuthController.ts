@@ -14,9 +14,11 @@ export class AuthController {
       await this.api.signin(data);
       router.go('/profile');
     } catch (e: any) {
-      console.error(e.status);
-      console.error(e.response.reason);
-      store.set('error', {errorCode: e.status, errorText: e.response.reason});
+      let errorText = 'Internal sever error';
+      if ('response' in e && 'reason' in e.response) {
+        errorText = e.response.reason;
+      }
+      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
       router.go('/error');
     }
   }
@@ -29,9 +31,11 @@ export class AuthController {
 
       router.go('/profile');
     } catch (e: any) {
-      console.error(e.status);
-      console.error(e.response.reason);
-      store.set('error', {errorCode: e.status, errorText: e.response.reason});
+      let errorText = 'Internal sever error';
+      if ('response' in e && 'reason' in e.response) {
+        errorText = e.response.reason;
+      }
+      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
       router.go('/error');
     }
   }

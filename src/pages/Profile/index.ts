@@ -8,8 +8,10 @@ import AuthController from '../../controllers/AuthController';
 import UserController from '../../controllers/UserController';
 import { withStore } from '../../utils/Store';
 import { UserProfile } from '../../api/UserAPI';
+import left from '../../../static/left.png';
 
 export class ProfilePageProto extends Block {
+  static API_AVATAR_URL = 'https://ya-praktikum.tech/api/v2/resources/';
   init() {
     AuthController.fetchUser();
     this.children.first_name = new LabeledInput({
@@ -67,6 +69,11 @@ export class ProfilePageProto extends Block {
       }
     })
 
+    this.children.linkLeft = new Link({
+      image: left,
+      isBack: true
+    });
+
     this.children.linkChangeData = new Link({
       label: 'Изменить данные',
       to: '/profilesave'
@@ -75,6 +82,11 @@ export class ProfilePageProto extends Block {
     this.children.linkChangePassword = new Link({
       label: 'Изменить пароль',
       to: '/profilesavepassword'
+    });
+
+    this.children.linkToMessenger = new Link({
+      label: 'К Мессенджеру',
+      to: '/messenger'
     });
 
     this.children.buttonExit = new Button({
@@ -94,6 +106,14 @@ export class ProfilePageProto extends Block {
       .map((child) => ([(child as LabeledInput).getName(), (child as LabeledInput).getValue()]))
     const data = Object.fromEntries(values);
     UserController.saveprofile(data as UserProfile);
+    const photoFiles = (document!.getElementById("avatar_file_name_id")! as HTMLInputElement).files;
+    if (photoFiles!.length > 0) {
+      const fileAvatar = photoFiles?.item(0);
+      console.log(fileAvatar);
+      const fData = new FormData();
+      fData.append('avatar', fileAvatar as Blob);
+      UserController.saveavatar(fData);
+    }
   }
 
   render() {
@@ -101,8 +121,8 @@ export class ProfilePageProto extends Block {
   }
 }
 
-const withUserIsNotSave = withStore((state) => ({ ...state.user, isSave: false }))
-const withUserIsSave = withStore((state) => ({ ...state.user, isSave: true }))
+const withUserIsNotSave = withStore((state) => ({ ...state.user, isSave: false, avatar: ProfilePageProto.API_AVATAR_URL + state.user.avatar, display_name_label: state.user.display_name}))
+const withUserIsSave = withStore((state) => ({ ...state.user, isSave: true, avatar: ProfilePageProto.API_AVATAR_URL + state.user.avatar, display_name_label: state.user.display_name}))
 
 export const ProfilePageIsNotSave = withUserIsNotSave(ProfilePageProto);
 export const ProfilePageIsSave = withUserIsSave(ProfilePageProto);

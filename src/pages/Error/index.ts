@@ -10,7 +10,7 @@ export class ErrorPageProto extends Block {
   protected init() {
     this.children.link = new Link({
       label: 'Назад',
-      to: '/'
+      to: this.props.to
     });
 
   }

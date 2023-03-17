@@ -6,6 +6,7 @@ import store from './utils/Store';
 import AuthController from './controllers/AuthController';
 import { ProfileSavePassword } from './pages/ProfileSavePassword';
 import { ErrorPage } from './pages/Error';
+import { ChatWindow } from './pages/ChatWindow';
 declare global {
   interface Window {
     goToPage:any;
@@ -18,7 +19,10 @@ enum Routes {
   Profile = '/profile',
   ProfileSave = '/profilesave',
   ProfileSavePassword = '/profilesavepassword',
-  Error = '/error'
+  Error = '/error',
+  Messenger = '/messenger',
+  AddRemoveUser = '/addremoveuser',
+  Attach = '/attach',
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -29,6 +33,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.ProfileSave, ProfilePageIsSave)
     .use(Routes.ProfileSavePassword, ProfileSavePassword)
     .use(Routes.Error, ErrorPage)
+    .use(Routes.Messenger, ChatWindow)
 
   let isProtectedRoute = true;
 
