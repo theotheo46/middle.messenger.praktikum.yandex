@@ -11,7 +11,6 @@ export class Store extends EventBus {
 
   public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);
-
     this.emit(StoreEvents.Updated, this.getState());
   }
 
@@ -32,17 +31,10 @@ export function withStore(mapStateToProps: (state: any) => any) {
 
       constructor(props: any) {
         previousState = mapStateToProps(store.getState());
-
-        console.log(props);
-        console.log(previousState);
-
         super({ ...props, ...previousState });
-
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
-
           previousState = stateProps;
-
           this.setProps({ ...stateProps });
         });
       }

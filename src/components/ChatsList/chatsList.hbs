@@ -1,9 +1,19 @@
-<div class="{{ styles.chats-list }}">
-{{#if isLoaded }}
-    {{#each chats}}
-        {{{this}}}
-    {{/each}}
-{{else}}
-  Loading...
-{{/if}}
+<div class="{{ styles.chats-list-container }}">
+  <div class="{{ styles.chats-list__header }}">
+    {{{buttonAddChat}}}
+    {{{buttonRemoveChat}}}
+    {{{buttonAddUserToChat}}}
+    {{{buttonRemoveUserFromChat}}}
+  </div>
+  <div class="{{ styles.chats-list }}">
+  {{#if isLoaded }}
+      {{#each chats}}
+          {{{this}}}
+      {{/each}}
+  {{else}}
+    Loading...
+  {{/if}}
+  </div>
+  {{{addChat}}}
 </div>
+
