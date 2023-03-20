@@ -343,3 +343,88 @@
   align-self: flex-end;
   background: #cdc1f1;
 }
+
+.chat {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 50px;
+
+    padding: 15px 10px;
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #f3f3f3;
+
+    cursor: pointer;
+}
+
+.chat--selected {
+    background: #66669f;
+}
+
+.chat__badge {
+    display: inline-block;
+
+    width: 15px;
+    height: 15px;
+
+    margin-left: auto;
+    border-radius: 50%;
+
+    background: #5151fd;
+
+    font-size: 10px;
+    text-align: center;
+    line-height: 15px;
+    color: #f3f3f3;
+
+    vertical-align: middle;
+}
+
+.chats-list  {
+    width: 200px;
+    height: 100%;
+    background: #eee;
+}
+
+.messenger {
+    display: flex;
+    flex-flow: column nowrap;
+
+    width: 100%;
+    padding: 10px 30px;
+}
+
+.messenger__messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.messenger__footer {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+
+    margin-top: auto;
+}
+
+.messenger__footer input {
+    width: 100%;
+    border-radius: 0;
+}
+
+.messenger__footer button {
+    margin-left: auto;
+}
+
+
+.messenger-page {
+    height: 100vh;
+
+    display: flex;
+    flex-flow: nowrap;
+} 
+
+
+
+
+

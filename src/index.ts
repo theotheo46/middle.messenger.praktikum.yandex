@@ -6,7 +6,8 @@ import store from './utils/Store';
 import AuthController from './controllers/AuthController';
 import { ProfileSavePassword } from './pages/ProfileSavePassword';
 import { ErrorPage } from './pages/Error';
-import { ChatWindow } from './pages/ChatWindow';
+import { MessengerPage } from './pages/Messenger';
+
 declare global {
   interface Window {
     goToPage:any;
@@ -33,7 +34,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.ProfileSave, ProfilePageIsSave)
     .use(Routes.ProfileSavePassword, ProfileSavePassword)
     .use(Routes.Error, ErrorPage)
-    .use(Routes.Messenger, ChatWindow)
+    .use(Routes.Messenger, MessengerPage)
 
   let isProtectedRoute = true;
 

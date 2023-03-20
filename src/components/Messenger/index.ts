@@ -3,9 +3,9 @@ import template from './messenger.hbs';
 import { Message } from '../Message';
 import { Input } from '../Input';
 import { Button } from '../Button';
+import * as styles from '../../styles.module.pcss';
 import MessagesController, { Message as MessageInfo } from '../../controllers/MessagesController';
 import { withStore } from '../../utils/Store';
-import * as styles from '../../styles.module.pcss';
 
 interface MessengerProps {
   selectedChat: number | undefined;

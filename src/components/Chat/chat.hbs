@@ -1,17 +1,6 @@
-<div class="{{styles.chat_container}} {{ styles.chat_container_flex }} ">
-    <div class="{{ styles.chat__left_pane }}">
-        <img src="{{avatar}}" name="avatar" alt="Аватар">
-    </div>
-    <div class="{{ styles.chat__right_pane }}">
-        <div class="{{ styles.chat__upper_pane }}">
-            <div class="{{ styles.chat__title }}">{{title}}</div>
-            <div>{{datetime}}</div>
-        </div>
-        <div class="{{ styles.chat__lower_pane }}">
-            <div class="{{ styles.chat__message }}">{{message}}</div>
-            {{#if unread_count }}
-                <div class="{{ styles.chat__badge }}">{{unread_count}}</div>
-            {{/if}}
-        </div>
-    </div>
+<div class="{{ styles.chat }} {{#if isSelected }}{{ styles.chat--selected }}{{/if}}">
+    {{title}}
+    {{#if unread_count }}
+        <span class="{{ styles.chat__badge }}">{{unread_count}}</span>
+    {{/if}}
 </div>
