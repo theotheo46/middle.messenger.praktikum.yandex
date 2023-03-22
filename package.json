@@ -8,7 +8,8 @@
     "start": "npm run build && node src/server/server.ts",
     "prebuild": "rm -rf dist",
     "dev": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",

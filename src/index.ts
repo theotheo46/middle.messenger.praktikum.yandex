@@ -9,7 +9,7 @@ import { MessengerPage } from './pages/Messenger';
 
 declare global {
   interface Window {
-    goToPage:any;
+    goToPage:unknown;
   }
 }
 
