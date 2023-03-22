@@ -5,7 +5,7 @@ const path = require('path');
 const PORT = 3000;
 const app = express();
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   res.set({
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
@@ -15,7 +15,7 @@ app.use((req, res, next) => {
       "X-WebKit-CSP": "default-src *"
   })
   next();
-});
+}); */
 
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.listen(PORT, () => {
