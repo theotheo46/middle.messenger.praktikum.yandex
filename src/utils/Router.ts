@@ -13,7 +13,13 @@ function render(query: string, block: Block) {
 
   root.innerHTML = '';
 
-  root.append(block.getContent()!);
+  const el = block.getContent();
+  
+  if (!el) {
+    throw new Error('block.getContent is not defined');
+  }
+
+  root.append(el);
 
   return root;
 }

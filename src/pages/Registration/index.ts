@@ -1,11 +1,9 @@
 import Block from '../../utils/Block';
-import {Link, LinkProps} from '../../components/Link';
-import {PlaceHolderInput, PlaceHolderInputProps} from '../../components/PlaceHolderInput';
+import {Link} from '../../components/Link';
+import {PlaceHolderInput} from '../../components/PlaceHolderInput';
 import {Button} from '../../components/Button';
 import template from './registration.hbs';
 import {Validator} from '../../utils/Validator';
-import HTTPTransport from '../../utils/HTTPTransport';
-import { BlockUtility} from '../../utils/BlockUtility';
 import * as styles from '../../styles.module.pcss';
 import AuthController from '../../controllers/AuthController';
 import { SignupData } from '../../api/AuthAPI';

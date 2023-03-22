@@ -5,7 +5,7 @@ import { Input } from '../Input';
 import { Button } from '../Button';
 import * as styles from '../../styles.module.pcss';
 import MessagesController, { Message as MessageInfo } from '../../controllers/MessagesController';
-import { withStore } from '../../utils/Store';
+import store, { withStore } from '../../utils/Store';
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -26,7 +26,29 @@ class MessengerBase extends Block<MessengerProps> {
       name: 'message'
     });
 
-    this.children.button = new Button({
+    this.children.buttonAttach = new Button({
+      label: 'Присоединить',
+      type: 'button',
+      events: {
+        click: () => {
+          if (store.isModalShow()) return;
+          if (this.props.selectedChat === undefined) {
+            alert('Pls select any chat');
+            return;
+          }
+      
+          const state = store.getState();
+          if (state.showModalAttachment === undefined) {
+            store.set('showModalAttachment', true);
+          }
+          else {
+            store.set('showModalAttachment', !state.showModalAttachment);
+          }
+        }
+      }
+    });
+
+    this.children.buttonSend = new Button({
       label: 'Отправить',
       type: 'button',
       events: {
@@ -36,7 +58,11 @@ class MessengerBase extends Block<MessengerProps> {
 
           input.setValue('');
 
-          MessagesController.sendMessage(this.props.selectedChat!, message);
+          if (!this.props.selectedChat) {
+            throw new Error('selectedChat is not defined');
+          }
+
+          MessagesController.sendMessage(this.props.selectedChat, message);
         }
       }
     });

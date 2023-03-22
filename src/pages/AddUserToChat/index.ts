@@ -1,17 +1,14 @@
 import Block from '../../utils/Block';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
-import template from './addchat.hbs';
+import template from '../AddChat/addchat.hbs';
+import {AddChatProps} from '../AddChat';
 import * as styles from '../../styles.module.pcss';
 import store, { withStore } from '../../utils/Store';
 import ChatsController from '../../controllers/ChatsController';
 
-export interface AddChatProps  {
-    showModal : boolean;
-    title: string;
-    selectedChat?: number;
-  }
- class AddChatBase extends Block<AddChatProps> {
+
+export class AddUserToChatBase extends Block<AddChatProps> {
     constructor(props: AddChatProps) {
         super(props);
       }
@@ -22,9 +19,9 @@ export interface AddChatProps  {
      this.props.showModal = false;
   
       this.children.input = new Input({
-        name: 'chatname',
+        name: 'username',
         type: 'text',
-        placeholder: 'Имя чата',
+        placeholder: 'Имя пользователя',
       });
 
       this.children.buttonOK = new Button({
@@ -43,20 +40,25 @@ export interface AddChatProps  {
     }
    
     onOK() {
-        const chatName = (this.children.input as Input).value();
-        if (chatName == '') {
-            alert('Имя чата не должно быть пустым');
+        const userName = (this.children.input as Input).value();
+        if (userName == '') {
+            alert('Имя пользователя не должно быть пустым');
         }
         else {
-            ChatsController.create(chatName);
+          
+          if (!this.props.selectedChat) {
+            throw new Error('selectedChat is not defined');
+          }
+            ChatsController.addUserToChat(this.props.selectedChat, userName);
             const state = store.getState();
-            store.set('showModalAddChat', !state.showModalAddChat);
+            store.set('showModalAddUserToChat', !state.showModalAddUserToChat);
         }
     }
            
     onCancel() {
+        console.log('Cancel')
         const state = store.getState();
-        store.set('showModalAddChat', !state.showModalAddChat);
+        store.set('showModalAddUserToChat', !state.showModalAddUserToChat);
     }
     
 
@@ -66,8 +68,9 @@ export interface AddChatProps  {
     }
   }
 
-  const withShowModal = withStore((state) => ({showModal: state.showModalAddChat}))
+  const withShowModal = withStore((state) => ({showModal: state.showModalAddUserToChat, selectedChat: state.selectedChat}))
   
-  export const AddChat = withShowModal(AddChatBase);
+  export const AddUserToChat = withShowModal(AddUserToChatBase);
 
   
+ 

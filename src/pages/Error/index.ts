@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import {Link, LinkProps} from '../../components/Link';
+import {Link} from '../../components/Link';
 import template from './error.hbs';
 import * as styles from '../../styles.module.pcss';
 import { withStore } from '../../utils/Store';

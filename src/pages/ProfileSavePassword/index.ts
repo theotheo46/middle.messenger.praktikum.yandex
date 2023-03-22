@@ -6,6 +6,9 @@ import * as styles from '../../styles.module.pcss';
 import { withStore } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
 import { Password } from '../../api/UserAPI';
+import { Link } from '../../components/Link';
+import left from '../../../static/left.png';
+import ResourcesAPI from '../../api/ResourcesAPI';
 
 
 export class ProfileSavePasswordPageProto extends Block {
@@ -42,6 +45,11 @@ export class ProfileSavePasswordPageProto extends Block {
         click: () => this.onPasswordSave()
       }
     })
+
+    this.children.linkLeft = new Link({
+      image: left,
+      isBack: true
+    });
    
   }
 
@@ -70,6 +78,7 @@ export class ProfileSavePasswordPageProto extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user}))
+
+const withUser = withStore((state) => ({ ...state.user, avatar: ResourcesAPI.get_res_url() + state.user.avatar, display_name_label: state.user.display_name}))
 
 export const ProfileSavePassword = withUser(ProfileSavePasswordPageProto);

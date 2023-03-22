@@ -2,12 +2,15 @@ import API, { ChatsAPI } from '../api/ChatsAPI';
 import store from '../utils/Store';
 import MessagesController from './MessagesController';
 import router from '../utils/Router';
+import userAPI, { UserAPI} from '../api/UserAPI';
 
 class ChatsController {
   private readonly api: ChatsAPI;
+  private readonly userapi: UserAPI;
 
   constructor() {
     this.api = API;
+    this.userapi = userAPI;
   }
 
   async create(title: string) {
@@ -26,7 +29,6 @@ class ChatsController {
 
   async fetchChats() {
     const chats = await this.api.read();
-
     chats.map(async (chat) => {
       const token = await this.getToken(chat.id);
 
@@ -36,9 +38,26 @@ class ChatsController {
     store.set('chats', chats);
   }
 
-  addUserToChat(id: number, userId: number) {
+ async addUserToChat(id: number, user: string) {
     try {
-      this.api.addUsers(id, [userId]);
+      //console.log(`addUserToChat: id=${id} user=${user}`)
+      const user1 = await this.userapi.search({login: user});
+      this.api.addUsers(id, [user1.id]);
+    } catch (e: any) {
+      let errorText = 'Internal sever error';
+      if ('response' in e && 'reason' in e.response) {
+        errorText = e.response.reason;
+      }
+      store.set('error', { errorCode: e.status, errorText: errorText , to: '/messenger'});
+      router.go('/error');
+    }
+  }
+
+  async removeUserFromChat(id: number, user: string) {
+    try {
+      //console.log(`addUserToChat: id=${id} user=${user}`)
+      const user1 = await this.userapi.search({login: user});
+      this.api.deleteUsers(id, [user1.id]);
     } catch (e: any) {
       let errorText = 'Internal sever error';
       if ('response' in e && 'reason' in e.response) {
@@ -70,6 +89,11 @@ class ChatsController {
   selectChat(id: number) {
     store.set('selectedChat', id);
   }
+
+  unselectChat() {
+    store.set('selectedChat', undefined);
+  }
+
 }
 
 const controller = new ChatsController();

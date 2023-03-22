@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
-import {Link, LinkProps} from '../../components/Link';
-import {LabeledInput, LabeledInputProps} from '../../components/LabeledInput';
+import {Link} from '../../components/Link';
+import {LabeledInput} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profile.hbs';
 import * as styles from '../../styles.module.pcss';
@@ -9,9 +9,11 @@ import UserController from '../../controllers/UserController';
 import { withStore } from '../../utils/Store';
 import { UserProfile } from '../../api/UserAPI';
 import left from '../../../static/left.png';
+import ResourcesAPI from '../../api/ResourcesAPI';
+import { Input } from '../../components/Input';
+
 
 export class ProfilePageProto extends Block {
-  static API_AVATAR_URL = 'https://ya-praktikum.tech/api/v2/resources/';
   init() {
     AuthController.fetchUser();
     this.children.first_name = new LabeledInput({
@@ -97,6 +99,14 @@ export class ProfilePageProto extends Block {
         }
       }
     })
+
+    
+    this.children.inputFileAttach = new Input({
+      name: 'image_attach',
+      type: 'file',
+      accept: "image/png, image/jpeg"
+    });
+
   }
 
   onProfileSave() {
@@ -106,9 +116,12 @@ export class ProfilePageProto extends Block {
       .map((child) => ([(child as LabeledInput).getName(), (child as LabeledInput).getValue()]))
     const data = Object.fromEntries(values);
     UserController.saveprofile(data as UserProfile);
-    const photoFiles = (document!.getElementById("avatar_file_name_id")! as HTMLInputElement).files;
-    if (photoFiles!.length > 0) {
-      const fileAvatar = photoFiles?.item(0);
+    const photoFiles = ((this.children.inputFileAttach as Input).getContent() as HTMLInputElement).files;
+    if (!photoFiles) {
+      throw new Error('photoFiles is not defined');  
+  }
+    if (photoFiles.length > 0) {
+      const fileAvatar = photoFiles.item(0);
       console.log(fileAvatar);
       const fData = new FormData();
       fData.append('avatar', fileAvatar as Blob);
@@ -121,8 +134,8 @@ export class ProfilePageProto extends Block {
   }
 }
 
-const withUserIsNotSave = withStore((state) => ({ ...state.user, isSave: false, avatar: ProfilePageProto.API_AVATAR_URL + state.user.avatar, display_name_label: state.user.display_name}))
-const withUserIsSave = withStore((state) => ({ ...state.user, isSave: true, avatar: ProfilePageProto.API_AVATAR_URL + state.user.avatar, display_name_label: state.user.display_name}))
+const withUserIsNotSave = withStore((state) => ({ ...state.user, isSave: false, avatar: ResourcesAPI.get_res_url() + state.user.avatar, display_name_label: state.user.display_name}))
+const withUserIsSave = withStore((state) => ({ ...state.user, isSave: true, avatar: ResourcesAPI.get_res_url() + state.user.avatar, display_name_label: state.user.display_name}))
 
 export const ProfilePageIsNotSave = withUserIsNotSave(ProfilePageProto);
 export const ProfilePageIsSave = withUserIsSave(ProfilePageProto);

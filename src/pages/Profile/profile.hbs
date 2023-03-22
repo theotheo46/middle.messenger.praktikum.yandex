@@ -5,10 +5,12 @@
     <div class="{{styles.profile_container__right}}">
         <div class="{{styles.profile_container__image}}">
             <center>
-                <span><img src="{{avatar}}" id="avatar_id" name="avatar" alt="Аватар"></span><span>{{display_name_label}}</span>
+                <div><img src="{{avatar}}" id="avatar_id" name="avatar" alt="Аватар"></span><span>{{display_name_label}}</div>
                 {{#if isSave }}
-                    <label for="avatar">Поменять аватар</label>
-                    <input type="file" id="avatar_file_name_id" name="avatar_file_name" accept="image/png, image/jpeg">
+                <div>
+                    <div>Поменять аватар</div>
+                    {{{inputFileAttach}}}
+                </div>
                 {{/if}}
             </center>
         </div>

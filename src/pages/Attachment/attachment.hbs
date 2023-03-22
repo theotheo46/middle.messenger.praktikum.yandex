@@ -1,13 +1,18 @@
 {{#if showModal }}
     <div class="{{ styles.modal }}">
     <div class="{{ styles.modal_main }}">
-        {{title}}
-        {{{input}}}
+        <div>
+            <div>Загрузить картинку</div>
+            {{{inputPictureAttach}}}
+        </div>
+        <div>
+            <div>Загрузить файл</div>
+            {{{inputFileAttach}}}
+        </div>
     </div>
     <div class="{{ styles.modal_footer }}">
         {{{buttonOK}}}
         {{{buttonCancel}}}
-    </div>
     </div>
 {{else}}
 <div></div>

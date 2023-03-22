@@ -1,4 +1,5 @@
 import BaseAPI from './BaseAPI';
+import { User } from './AuthAPI';
 
 
 export interface UserProfile {
@@ -14,6 +15,10 @@ export interface Password {
     oldPassword: string;
     newPassword: string;
   }
+
+export interface Login {
+  login: string;
+}
 
 
 export class UserAPI extends BaseAPI {
@@ -31,6 +36,12 @@ export class UserAPI extends BaseAPI {
 
   savepassword(data: Password) {
     return this.http.put('/password', data);
+  }
+
+  async search(data: Login): Promise<User> {
+    const user = await this.http.post<User[]>('/search', data);
+    console.log(user[0])
+    return user[0];
   }
 
 

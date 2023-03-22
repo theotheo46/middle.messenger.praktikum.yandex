@@ -17,6 +17,11 @@ export class Store extends EventBus {
   public getState() {
     return this.state;
   }
+
+  public isModalShow() : boolean{
+    return this.state.showModalAddUserToChat || this.state.showModalAddChat || this.state.showModalRemoveUserFromChat || this.state.showModalAttachment
+  }
+
 }
 
 const store = new Store();

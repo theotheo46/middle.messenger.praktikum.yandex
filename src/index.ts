@@ -2,7 +2,6 @@ import { LoginPage } from './pages/Login';
 import { RegistrationPage } from './pages/Registration';
 import Router from './utils/Router';
 import { ProfilePageIsNotSave, ProfilePageIsSave } from './pages/Profile';
-import store from './utils/Store';
 import AuthController from './controllers/AuthController';
 import { ProfileSavePassword } from './pages/ProfileSavePassword';
 import { ErrorPage } from './pages/Error';

@@ -7,6 +7,7 @@ export interface InputProps {
   placeholder?: string;
   value?: string;
   name: string;
+  accept?: string;
   events?: {
     focus: () => void;
     blur: () => void;

@@ -5,10 +5,12 @@ import * as styles from '../../styles.module.pcss';
 import store, { withStore } from '../../utils/Store';
 import { ChatInfo } from '../../api/ChatsAPI';
 import ChatsController from '../../controllers/ChatsController';
-import MessagesController from '../../controllers/MessagesController';
-import { Link } from '../Link';
 import {Button} from '../../components/Button';
 import { AddChat } from '../../pages/AddChat';
+import { AddUserToChat } from '../../pages/AddUserToChat';
+import { RemoveUserFromChat } from '../../pages/RemoveUserFromChat';
+import Router from '../../utils/Router';
+import { Attachment } from '../../pages/Attachment';
 
 
 interface ChatsListProps {
@@ -17,22 +19,38 @@ interface ChatsListProps {
   selectedChat: number | undefined;
 }
 
-class ChatsListBase extends Block<ChatsListProps> {
+class ChatsListBase extends Block<ChatsListProps>  {
   constructor(props: ChatsListProps) {
     super({...props});
   }
 
   protected init() {
     this.children.chats = this.createChats(this.props);
-   // ChatsController.addUserToChat(8451, 677502);
-/*     ChatsController.create('Chat1');
-    ChatsController.create('Chat2');
-    ChatsController.create('Chat3');  */
-    //this.children.profileLink = new Link({ to: '/profile', label: 'Профиль'});
+
+    this.children.attachment = new Attachment(
+      {
+        title: 'Присоединить',
+        showModal: false
+      }
+    )
 
     this.children.addChat = new AddChat(
       {
         title: 'Добавить новый чат',
+        showModal: false
+      }
+    )
+
+    this.children.addUserToChat = new AddUserToChat(
+      {
+        title: 'Добавить пользователя к чату',
+        showModal: false
+      }
+    )
+
+    this.children.removeUserFromChat = new RemoveUserFromChat(
+      {
+        title: 'Удалить пользователя из чата',
         showModal: false
       }
     )
@@ -47,13 +65,13 @@ class ChatsListBase extends Block<ChatsListProps> {
     this.children.buttonAddUserToChat = new Button({
       label: 'Add u to chat',
       events: {
-        click: () => {console.log('Add user to chat')}
+        click: () => this.onAddUserToChat()
       },
     });
     this.children.buttonRemoveUserFromChat = new Button({
       label: 'Rmv u from chat',
       events: {
-        click: () => {console.log('Remove user from chat')}
+        click: () => this.onRemoveUserFromChat()
       },
     });
     this.children.buttonRemoveChat = new Button({
@@ -62,29 +80,71 @@ class ChatsListBase extends Block<ChatsListProps> {
         click: () => this.onRemoveSelectedChat()
       },
     });
+    this.children.buttonProfile = new Button({
+      label: 'Profile',
+      events: {
+        click: () => this.onProfileClick()
+      },
+    });
+  }
+
+  private onProfileClick() {
+    Router.go('/profile');
   }
 
   private onAddChat() {
-    console.log('Add chat');
+    if (store.isModalShow()) return;
     const state = store.getState();
-    if (state.showModal === undefined) {
-      store.set('showModal', true);
+    if (state.showModalAddChat === undefined) {
+      store.set('showModalAddChat', true);
     }
     else {
-      store.set('showModal', !state.showModal);
+      store.set('showModalAddChat', !state.showModalAddChat);
     }
   }
 
   private onRemoveSelectedChat() {
-    console.log('Remove chat');
+    if (store.isModalShow()) return;
     if (this.props.selectedChat === undefined) {
       alert('Pls select any chat');
     }
     else {
       ChatsController.delete(this.props.selectedChat)
+      ChatsController.unselectChat();
+    }
+  }
+
+  private onRemoveUserFromChat() {
+    if (store.isModalShow()) return;
+    if (this.props.selectedChat === undefined) {
+      alert('Pls select any chat');
+      return;
     }
 
+    const state = store.getState();
+    if (state.showModalRemoveUserFromChat === undefined) {
+      store.set('showModalRemoveUserFromChat', true);
+    }
+    else {
+      store.set('showModalRemoveUserFromChat', !state.showModalRemoveUserFromChat);
+    }
+  }
 
+  
+  private onAddUserToChat() {
+    if (store.isModalShow()) return;
+    if (this.props.selectedChat === undefined) {
+      alert('Pls select any chat');
+      return;
+    }
+
+    const state = store.getState();
+    if (state.showModalAddUserToChat === undefined) {
+      store.set('showModalAddUserToChat', true);
+    }
+    else {
+      store.set('showModalAddUserToChat', !state.showModalAddUserToChat);
+    }
   }
 
   protected componentDidUpdate(oldProps: ChatsListProps, newProps: ChatsListProps): boolean {
@@ -109,6 +169,7 @@ class ChatsListBase extends Block<ChatsListProps> {
   protected render(): DocumentFragment {
     return this.compile(template, {...this.props, styles});
   }
+
 }
 
 const withChats = withStore((state) => (

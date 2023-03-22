@@ -10,6 +10,7 @@ export class UserController {
     this.api = API;
   }
 
+
   async saveprofile(data: UserProfile) {
     try {
       await this.api.saveprofile(data);
