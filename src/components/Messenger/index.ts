@@ -1,11 +1,12 @@
 import Block from '../../utils/Block';
 import template from './messenger.hbs';
 import { Message } from '../Message';
-import { Input } from '../Input';
 import { Button } from '../Button';
 import * as styles from '../../styles.module.pcss';
 import MessagesController, { Message as MessageInfo } from '../../controllers/MessagesController';
 import store, { withStore } from '../../utils/Store';
+import { PlaceHolderInput } from '../PlaceHolderInput';
+import { InputNames, Validator } from '../../utils/Validator';
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -14,16 +15,17 @@ interface MessengerProps {
 }
 
 class MessengerBase extends Block<MessengerProps> {
+  private readonly validator = Validator.Instance; 
   constructor(props: MessengerProps) {
     super(props);
   }
   protected init() {
     this.children.messages = this.createMessages(this.props);
 
-    this.children.input = new Input({
+    this.children.input = new PlaceHolderInput({
       type: 'text',
-      placeholder: 'Сообщение',
-      name: 'message'
+      name: 'message',
+      errorText: ''
     });
 
     this.children.buttonAttach = new Button({
@@ -53,8 +55,14 @@ class MessengerBase extends Block<MessengerProps> {
       type: 'button',
       events: {
         click: () => {
-          const input =this.children.input as Input;
-          const message = input.value();
+          const input =this.children.input as PlaceHolderInput;
+          const ret = this.validator.validate(input.getName() as InputNames, input.getValue());
+          if (!ret) {
+            const nm = this.validator.VALIDATORS[input.getName() as InputNames].errorMessage;
+            alert(nm);
+            return;
+          }
+          const message = input.getValue();
 
           input.setValue('');
 

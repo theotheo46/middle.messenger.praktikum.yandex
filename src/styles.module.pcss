@@ -102,8 +102,8 @@
 }
 
 .errorinformer {
-    font-size: 9px;
-    line-height: 24px;
+    font-size: 10px;
+    line-height: 12px;
     color: var(--errorinformer-color);
 }
 
@@ -119,7 +119,6 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-   
 }
 
 .labeled_input_container_bottom {
@@ -172,8 +171,8 @@
 }
 
 .profile_container__left {
-   width : 20%;
-   height : 100%;
+    width : 20%;
+    height : 100%;
 }
 
 .profile_container__left img {
@@ -210,15 +209,16 @@
 }
 
 .message--mine {
-  align-self: flex-end;
-  background: var(--message-mine-color);
+    align-self: flex-end;
+    background: var(--message-mine-color);
 }
 
 .chat {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: normal;
     height: 50px;
-    padding: 15px 10px;
+    padding: 5px;
     box-sizing: border-box;
     border-bottom: 1px solid var(--chat-border-color);
     cursor: pointer;
@@ -276,10 +276,10 @@
 }
 
 .messenger__messages {
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  overflow-x: hidden ;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden ;
 }
 
 .messenger__footer {
@@ -296,6 +296,10 @@
 
 .messenger__footer button {
     margin-left: auto;
+}
+
+body {
+    margin :0;
 }
 
 .messenger-page {
@@ -315,7 +319,6 @@
     top: 50%;
     left: 50%;
     background: var(--button-fg-color);
-
 }
 
 .modal_main {
@@ -336,3 +339,12 @@
     justify-content: space-evenly;
 }
 
+.img_container {
+    height: 40px;
+    width: 40px;
+}
+
+.img_container img {
+    max-width: 100%;
+    max-height: 100%;
+}

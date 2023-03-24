@@ -47,6 +47,10 @@ export class PlaceHolderInput extends Block<PlaceHolderInputProps> {
     return this.compile(template, { ...this.props, styles });
   }
 
+  public setValue(v : string) {
+     ((this.children.input as Input).getContent() as HTMLInputElement).value = v;
+  }
+
   public getName() {
     return ((this.children.input as Input).getContent() as HTMLInputElement).name;
   }

@@ -10,7 +10,7 @@ import { SignupData } from '../../api/AuthAPI';
 
 export class LoginPage extends Block {
   constructor() {
-    super({});
+    super( { events: { submit: (e: Event) => this.onSubmit(e) } });
   }
 
   private readonly validator = Validator.Instance; 
@@ -40,9 +40,7 @@ export class LoginPage extends Block {
 
     this.children.button = new Button({
       label: 'Авторизоваться',
-      events: {
-        click: () => this.onSubmit()
-      },
+      type: "submit",
     });
 
     this.children.buttonExit = new Button({
@@ -53,11 +51,10 @@ export class LoginPage extends Block {
         }
       }
     })
-
-
   }
  
-  onSubmit() {
+  onSubmit(e : Event) {
+    e.preventDefault();
     const values = Object
       .values(this.children)
       .filter(child => child instanceof PlaceHolderInput)

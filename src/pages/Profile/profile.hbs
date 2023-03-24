@@ -5,7 +5,12 @@
     <div class="{{styles.profile_container__right}}">
         <div class="{{styles.profile_container__image}}">
             <center>
-                <div><img src="{{avatar}}" id="avatar_id" name="avatar" alt="Аватар"></span><span>{{display_name_label}}</div>
+                <div>
+                    <div class="{{styles.img_container}}">
+                        <img src="{{avatar}}" id="avatar_id" name="avatar" alt="Аватар">
+                    </div>
+                    {{display_name_label}}
+                </div>
                 {{#if isSave }}
                 <div>
                     <div>Поменять аватар</div>
@@ -36,4 +41,4 @@
                 <div>{{{ buttonExit }}}</div>
             {{/if}}
     </div>
-</from>
+</form>

@@ -1,7 +1,6 @@
 import API, { ChatsAPI } from '../api/ChatsAPI';
 import store from '../utils/Store';
 import MessagesController from './MessagesController';
-import router from '../utils/Router';
 import userAPI, { UserAPI} from '../api/UserAPI';
 
 class ChatsController {
@@ -22,8 +21,7 @@ class ChatsController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', { errorCode: e.status, errorText: errorText, to: '/messenger'});
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
@@ -31,10 +29,8 @@ class ChatsController {
     const chats = await this.api.read();
     chats.map(async (chat) => {
       const token = await this.getToken(chat.id);
-
       await MessagesController.connect(chat.id, token);
     });
-
     store.set('chats', chats);
   }
 
@@ -48,8 +44,7 @@ class ChatsController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', { errorCode: e.status, errorText: errorText , to: '/messenger'});
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
@@ -63,8 +58,7 @@ class ChatsController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', { errorCode: e.status, errorText: errorText , to: '/messenger'});
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
@@ -77,8 +71,7 @@ class ChatsController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', { errorCode: e.status, errorText: errorText, to: '/messenger' });
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 

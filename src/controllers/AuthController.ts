@@ -18,38 +18,34 @@ export class AuthController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
-      router.go('/error');
+/*       store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
+      router.go('/error'); */
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
   async signup(data: SignupData) {
     try {
       await this.api.signup(data);
-
       await this.fetchUser();
-
       router.go('/profile');
     } catch (e: any) {
       let errorText = 'Internal sever error';
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
   async fetchUser() {
     const user = await this.api.read();
-
     store.set('user', user);
   }
 
   async logout() {
     try {
       await this.api.logout();
-
       router.go('/');
     } catch (e: any) {
       console.error(e.message);

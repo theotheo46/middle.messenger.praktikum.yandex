@@ -10,7 +10,7 @@ import { SignupData } from '../../api/AuthAPI';
 
 export class RegistrationPage extends Block {
   constructor() {
-    super({});
+    super( { events: { submit: (e: Event) => this.onSubmit(e) } });
   }
 
   private readonly validator = Validator.Instance; 
@@ -70,9 +70,7 @@ export class RegistrationPage extends Block {
 
     this.children.button = new Button({
       label: 'Зарегистрироваться',
-      events: {
-        click: () => this.onSubmit(),
-      },
+      type: "submit"
     });
 
     this.children.link = new Link({
@@ -82,7 +80,8 @@ export class RegistrationPage extends Block {
    
   }
 
-  onSubmit() {
+  onSubmit(e: Event) {
+    e.preventDefault();
     const values = Object
       .values(this.children)
       .filter(child => child instanceof PlaceHolderInput)

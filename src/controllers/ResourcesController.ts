@@ -1,4 +1,3 @@
-import router from '../utils/Router';
 import store from '../utils/Store';
 import API, { ResourcesAPI} from '../api/ResourcesAPI';
 import MessagesController from './MessagesController';
@@ -23,8 +22,7 @@ export class ResourcesController {
         if ('response' in e && 'reason' in e.response) {
           errorText = e.response.reason;
         }
-        store.set('error', {errorCode: e.status, errorText: errorText, to: '/messenger'});
-        router.go('/error');
+        alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 

@@ -12,7 +12,8 @@ interface ButtonProps {
 
 export class Button extends Block<ButtonProps> {
     constructor(props: ButtonProps) {
-    super({ type: 'button', ...props });
+    if (props.type === undefined) {props.type = 'button'}
+    super(props);
   }
 
   render() {

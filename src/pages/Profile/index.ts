@@ -12,8 +12,24 @@ import left from '../../../static/left.png';
 import ResourcesAPI from '../../api/ResourcesAPI';
 import { Input } from '../../components/Input';
 
+interface ProfilePageProps {
+  title: string;
+  first_name: string,
+  second_name: string,
+  login: string,
+  email: string,
+  display_name: string,
+  phone: string,
+  events: {
+    submit: (e: Event) => void
+  }
+}
+export class ProfilePageProto extends Block<ProfilePageProps> {
 
-export class ProfilePageProto extends Block {
+  constructor(props: ProfilePageProps) {
+    super({...props, events: { submit: (e: Event) => this.onProfileSave(e) }});
+  }
+
   init() {
     AuthController.fetchUser();
     this.children.first_name = new LabeledInput({
@@ -66,9 +82,7 @@ export class ProfilePageProto extends Block {
 
     this.children.buttonSave = new Button({
       label: 'Сохранить',
-      events: {
-        click: () => this.onProfileSave()
-      }
+      type: "submit"
     })
 
     this.children.linkLeft = new Link({
@@ -109,7 +123,8 @@ export class ProfilePageProto extends Block {
 
   }
 
-  onProfileSave() {
+  onProfileSave(e: Event) {
+    e.preventDefault();
     const values = Object
       .values(this.children)
       .filter(child => child instanceof LabeledInput)

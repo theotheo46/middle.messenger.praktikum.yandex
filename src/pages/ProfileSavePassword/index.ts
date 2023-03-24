@@ -13,10 +13,11 @@ import ResourcesAPI from '../../api/ResourcesAPI';
 
 export class ProfileSavePasswordPageProto extends Block {
 
+  constructor() {
+    super( { events: { submit: (e: Event) => this.onPasswordSave(e) } });
+  }
 
   protected init() {
-
- 
     this.children.oldPassword = new LabeledInput({
       name: 'oldPassword',
       type: 'password',
@@ -41,9 +42,7 @@ export class ProfileSavePasswordPageProto extends Block {
 
     this.children.buttonSave = new Button({
       label: 'Сохранить',
-      events: {
-        click: () => this.onPasswordSave()
-      }
+      type: "submit"
     })
 
     this.children.linkLeft = new Link({
@@ -53,8 +52,8 @@ export class ProfileSavePasswordPageProto extends Block {
    
   }
 
-  onPasswordSave() {
-
+  onPasswordSave(e: Event) {
+    e.preventDefault();
     console.log((this.children.newPassword as LabeledInput).getValue() );
     console.log((this.children.repnewPassword as LabeledInput).getValue() );
 

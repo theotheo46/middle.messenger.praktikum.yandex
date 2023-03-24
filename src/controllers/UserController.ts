@@ -1,7 +1,7 @@
 import API, { UserAPI, UserProfile, Password} from '../api/UserAPI';
 import router from '../utils/Router';
 import AuthController from './AuthController';
-import store from '../utils/Store';
+
 
 export class UserController {
   private readonly api: UserAPI;
@@ -21,8 +21,7 @@ export class UserController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
@@ -36,8 +35,7 @@ export class UserController {
       if ('response' in e && 'reason' in e.response) {
         errorText = e.response.reason;
       }
-      store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
-      router.go('/error');
+      alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
@@ -51,8 +49,7 @@ export class UserController {
         if ('response' in e && 'reason' in e.response) {
           errorText = e.response.reason;
         }
-        store.set('error', {errorCode: e.status, errorText: errorText, to: '/'});
-        router.go('/error');
+        alert(`Ошибка\nStatus:${e.status}\n${errorText}`);
     }
   }
 
