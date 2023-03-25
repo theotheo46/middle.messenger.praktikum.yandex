@@ -1,48 +1,100 @@
 import Block from '../../utils/Block';
-import {Link, LinkProps} from '../../components/Link';
-import {PlaceHolderInput, PlaceHolderInputProps} from '../../components/PlaceHolderInput';
+import {Link} from '../../components/Link';
+import {PlaceHolderInput} from '../../components/PlaceHolderInput';
 import {Button} from '../../components/Button';
 import template from './registration.hbs';
-import {Validator, InputNames} from '../../utils/Validator';
-import HTTPTRansport from '../../utils/HTTPTRansport';
-import { BlockUtility} from '../../utils/BlockUtility';
+import {Validator} from '../../utils/Validator';
 import * as styles from '../../styles.module.pcss';
+import AuthController from '../../controllers/AuthController';
+import { SignupData } from '../../api/AuthAPI';
 
-interface RegistrationPageProps {
-  title: string;
-  inputs : PlaceHolderInputProps[],
-  buttonCaption : string;      
-  link : LinkProps;
-}
-
-export class RegistrationPage extends Block<RegistrationPageProps> {
-  constructor(props: RegistrationPageProps) {
-    super(props);
+export class RegistrationPage extends Block {
+  constructor() {
+    super( { events: { submit: (e: Event) => this.onSubmit(e) } });
   }
 
   private readonly validator = Validator.Instance; 
 
   protected init() {
+    this.props.title = 'Регистрация';
 
-    this.children.inputs = [];
-
-    for (const prop of this.props.inputs) {
-      this.children.inputs.push(new PlaceHolderInput(prop));
-    }
- 
-   
-    this.children.button = new Button({
-      label: this.props.buttonCaption,
-      events : {
-        click: this.onClick.bind(this),
-      }
+    this.children.first_name = new PlaceHolderInput({
+      name: 'first_name',
+      type: 'text',
+      placeholder: 'Имя',
+      errorText: ''
     });
 
-    this.children.link = new Link(this.props.link);
+    this.children.second_name = new PlaceHolderInput({
+      name: 'second_name',
+      type: 'text',
+      placeholder: 'Фамилия',
+      errorText: ''
+    });
+
+/* 
+    this.children.display_name = new PlaceHolderInput({
+      name: 'display_name',
+      type: 'text',
+      placeholder: 'Имя в чате',
+      errorText: ''
+    }); */
+
+    this.children.email = new PlaceHolderInput({
+      name: 'email',
+      type: 'text',
+      placeholder: 'Почта',
+      errorText: ''
+    });
+
+    this.children.login = new PlaceHolderInput({
+      name: 'login',
+      type: 'text',
+      placeholder: 'Логин',
+      errorText: ''
+    });
+
+    this.children.phone = new PlaceHolderInput({
+      name: 'phone',
+      type: 'text',
+      placeholder: 'Телефон',
+      errorText: ''
+    });
+
+    this.children.password = new PlaceHolderInput({
+      name: 'password',
+      type: 'password',
+      placeholder: 'Пароль',
+      errorText: ''
+    });
+
+    this.children.button = new Button({
+      label: 'Зарегистрироваться',
+      type: "submit"
+    });
+
+    this.children.link = new Link({
+      label: 'Войти',
+      to: '/'
+    });
    
   }
 
-  onClick() {
+  onSubmit(e: Event) {
+    e.preventDefault();
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof PlaceHolderInput)
+      .map((child) => ([(child as PlaceHolderInput).getName(), (child as PlaceHolderInput).getValue()]))
+      console.log(values);
+    const data = Object.fromEntries(values);
+    console.log(data);
+
+    AuthController.signup(data as SignupData);
+    
+  }
+
+  /* onClick() {
 
     let errStr = '';
 
@@ -59,9 +111,9 @@ export class RegistrationPage extends Block<RegistrationPageProps> {
     }
     else {
       console.log('Sending HTTP request');
-      new HTTPTRansport('').get(BlockUtility.queryStringify(inputNameVal));
+      new HTTPTransport('').get(BlockUtility.queryStringify(inputNameVal));
     }
-  }
+  } */
 
   render() {
     return this.compile(template, { ...this.props, styles });

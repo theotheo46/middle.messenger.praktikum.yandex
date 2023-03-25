@@ -8,12 +8,11 @@ export enum Method {
   
   type Options = {
     method: Method;
-    data?: any;
+    data?: unknown;
   };
   
   export default class HTTPTransport {
-    //static API_URL = 'https://ya-praktikum.tech/api/v2';
-    static API_URL = 'https://ya/api/v2';
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
     protected endpoint: string;
   
     constructor(endpoint: string) {
@@ -65,7 +64,7 @@ export enum Method {
             if (xhr.status < 400) {
               resolve(xhr.response);
             } else {
-              reject(xhr.response);
+              reject(xhr);
             }
           }
         };
@@ -74,19 +73,20 @@ export enum Method {
         xhr.onerror = () => reject({reason: 'network error'});
         xhr.ontimeout = () => reject({reason: 'timeout'});
   
-        xhr.setRequestHeader('Content-Type', 'application/json');
   
         xhr.withCredentials = true;
         xhr.responseType = 'json';
   
         if (method === Method.Get || !data) {
+          xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.send();
-        } else {
+        } else if (data instanceof FormData) {
+            xhr.send(data as FormData);
+        }
+        else {
+          xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.send(JSON.stringify(data));
         }
       });
     }
   }
-  
-
-//new HTTPTransport().get('https://chats'); 

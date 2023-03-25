@@ -1,18 +1,43 @@
 import Block from '../../utils/Block';
 import template from './link.hbs';
+import { PropsWithRouter, withRouter } from '../../utils/withRouter';
 import * as styles from '../../styles.module.pcss';
 
-export interface LinkProps {
-  label?: string;
-  href : string;
-  image? : any;
+export interface LinkProps extends PropsWithRouter {
+  image? : unknown;
   name? : string;
   alt? : string;
+  to: string;
+  label?: string;
+  isBack?: boolean;
+  noNavigate?: boolean;
+  events?: {
+    click: () => void;
+  };
+
 }
 
-export class Link extends Block<LinkProps> {
+export class LinkProto extends Block<LinkProps> {
   constructor(props: LinkProps) {
-    super(props);
+      if (props.noNavigate === undefined || props.noNavigate == false) {
+        super({...props,
+            events: {
+              click: () => this.navigate()
+            },
+          });
+    }
+    else {
+      super(props);
+    }
+  }
+
+  navigate() {
+    if ((this.props.isBack===undefined) || (!this.props.isBack)) {
+      this.props.router.go(this.props.to);
+    }
+    else {
+      this.props.router.back();
+    }
   }
 
   render() {
@@ -20,3 +45,4 @@ export class Link extends Block<LinkProps> {
   }
 }
 
+export const Link = withRouter(LinkProto);

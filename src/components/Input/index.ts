@@ -7,6 +7,7 @@ export interface InputProps {
   placeholder?: string;
   value?: string;
   name: string;
+  accept?: string;
   events?: {
     focus: () => void;
     blur: () => void;
@@ -21,6 +22,10 @@ export class Input extends Block<InputProps> {
   render() {
     return this.compile(template, { ...this.props, styles });
   }
+
+  public setValue(value: string) {
+    return (this.element as HTMLInputElement).value = value;
+  } 
 
   value() {
     const input = this.element as HTMLInputElement;

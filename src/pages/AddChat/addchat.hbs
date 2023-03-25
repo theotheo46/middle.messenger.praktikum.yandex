@@ -1,0 +1,14 @@
+{{#if showModal }}
+    <div class="{{ styles.modal }}">
+    <div class="{{ styles.modal_main }}">
+        {{title}}
+        {{{input}}}
+    </div>
+    <div class="{{ styles.modal_footer }}">
+        {{{buttonOK}}}
+        {{{buttonCancel}}}
+    </div>
+    </div>
+{{else}}
+<div></div>
+{{/if}}

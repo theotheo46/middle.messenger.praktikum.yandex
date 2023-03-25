@@ -1,48 +1,156 @@
 import Block from '../../utils/Block';
-import {Link, LinkProps} from '../../components/Link';
-import {LabeledInput, LabeledInputProps} from '../../components/LabeledInput';
+import {Link} from '../../components/Link';
+import {LabeledInput} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profile.hbs';
 import * as styles from '../../styles.module.pcss';
+import AuthController from '../../controllers/AuthController';
+import UserController from '../../controllers/UserController';
+import { withStore } from '../../utils/Store';
+import { UserProfile } from '../../api/UserAPI';
+import left from '../../../static/left.png';
+import ResourcesAPI from '../../api/ResourcesAPI';
+import { Input } from '../../components/Input';
 
 interface ProfilePageProps {
   title: string;
-  inputs : LabeledInputProps[],
-  links : LinkProps[];
-  buttonCaption : string;      //links and button are mutual exclusive
-  left : any;
-  avatar : any;
-  isSave : boolean;   // if true - profileSave window (with button) if false - profile page with three links
+  first_name: string,
+  second_name: string,
+  login: string,
+  email: string,
+  display_name: string,
+  phone: string,
+  events: {
+    submit: (e: Event) => void
+  }
 }
+export class ProfilePageProto extends Block<ProfilePageProps> {
 
-export class ProfilePage extends Block<ProfilePageProps> {
   constructor(props: ProfilePageProps) {
-    super(props);
+    super({...props, events: { submit: (e: Event) => this.onProfileSave(e) }});
   }
 
-  protected init() {
+  init() {
+    AuthController.fetchUser();
+    this.children.first_name = new LabeledInput({
+      name: 'first_name',
+      type: 'text',
+      label: 'Имя',
+      errorText: '',
+      value: this.props.first_name
+    });
 
-    this.children.inputs = [];
-    this.children.links = [];
+    this.children.second_name = new LabeledInput({
+      name: 'second_name',
+      type: 'text',
+      label: 'Фамилия',
+      errorText: '',
+      value: this.props.second_name
+    });
 
-    for (const prop of this.props.inputs) {
-      this.children.inputs.push(new LabeledInput(prop));
-    }
+    this.children.login = new LabeledInput({
+      name: 'login',
+      type: 'text',
+      label: 'Логин',
+      errorText: '',
+      value: this.props.login
+    });
 
-    if (this.props.isSave) {
-      this.children.button = new Button({
-        label: this.props.buttonCaption,
-      });
-    }
-    else {
-      for (const prop of this.props.links) {
-        this.children.links.push(new Link(prop));
+    this.children.email = new LabeledInput({
+      name: 'email',
+      type: 'text',
+      label: 'Почта',
+      errorText: '',
+      value: this.props.email
+    });
+
+    this.children.display_name = new LabeledInput({
+      name: 'display_name',
+      type: 'text',
+      label: 'Имя в чате',
+      errorText: '',
+      value: this.props.display_name
+    });
+
+    this.children.phone = new LabeledInput({
+      name: 'phone',
+      type: 'text',
+      label: 'Телефон',
+      errorText: '',
+      value: this.props.phone
+    });
+
+    this.children.buttonSave = new Button({
+      label: 'Сохранить',
+      type: "submit"
+    })
+
+    this.children.linkLeft = new Link({
+      image: left,
+      isBack: true
+    });
+
+    this.children.linkChangeData = new Link({
+      label: 'Изменить данные',
+      to: '/profilesave'
+    });
+
+    this.children.linkChangePassword = new Link({
+      label: 'Изменить пароль',
+      to: '/profilesavepassword'
+    });
+
+    this.children.linkToMessenger = new Link({
+      label: 'К Мессенджеру',
+      to: '/messenger'
+    });
+
+    this.children.buttonExit = new Button({
+      label: 'Выйти',
+      events: {
+        click: () => {
+          AuthController.logout();
+        }
       }
-    }
+    })
 
+    
+    this.children.inputFileAttach = new Input({
+      name: 'image_attach',
+      type: 'file',
+      accept: "image/png, image/jpeg"
+    });
+
+  }
+
+  onProfileSave(e: Event) {
+    e.preventDefault();
+    const values = Object
+      .values(this.children)
+      .filter(child => child instanceof LabeledInput)
+      .map((child) => ([(child as LabeledInput).getName(), (child as LabeledInput).getValue()]))
+    const data = Object.fromEntries(values);
+    UserController.saveprofile(data as UserProfile);
+    const photoFiles = ((this.children.inputFileAttach as Input).getContent() as HTMLInputElement).files;
+    if (!photoFiles) {
+      throw new Error('photoFiles is not defined');  
+  }
+    if (photoFiles.length > 0) {
+      const fileAvatar = photoFiles.item(0);
+      console.log(fileAvatar);
+      const fData = new FormData();
+      fData.append('avatar', fileAvatar as Blob);
+      UserController.saveavatar(fData);
+    }
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {...this.props, styles});
   }
 }
+
+const withUserIsNotSave = withStore((state) => ({ ...state.user, isSave: false, avatar: ResourcesAPI.get_res_url() + state.user.avatar, display_name_label: state.user.display_name}))
+const withUserIsSave = withStore((state) => ({ ...state.user, isSave: true, avatar: ResourcesAPI.get_res_url() + state.user.avatar, display_name_label: state.user.display_name}))
+
+export const ProfilePageIsNotSave = withUserIsNotSave(ProfilePageProto);
+export const ProfilePageIsSave = withUserIsSave(ProfilePageProto);
