@@ -8,7 +8,9 @@
     "start": "npm run build && node src/server/server.js",
     "dev": "parcel",
     "build": "parcel build",
-    "lint": "eslint ."
+    "lint": "stylelint src/*.pcss &&  eslint .",
+    "clean": "rm -rf node_modules/",
+    "env": "env"
   },
   "dependencies": {
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
@@ -17,8 +19,8 @@
     "handlebars": "4.7.7",
     "postcss": "8.4.21",
     "postcss-conditionals-renewed": "1.0.0",
-    "postcss-modules": "4.3.1",
-    "postcss-nested": "6.0.0",
+    "postcss-modules": "6.0.0",
+    "postcss-nested": "6.0.1",
     "postcss-simple-vars": "7.0.1"
   },
   "devDependencies": {
@@ -45,7 +47,7 @@
     "stylelint-config-standard": "30.0.1",
     "ts-node": "10.9.1",
     "tslib": "2.5.0",
-    "typescript": "4.5.4",
+    "typescript": "5.0.2",
     "url": "0.11.0",
     "util": "0.12.5"
   }
