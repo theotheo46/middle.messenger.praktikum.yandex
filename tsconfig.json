@@ -15,6 +15,7 @@
         "noImplicitAny": true,
         "noUnusedLocals": true,  
         "noUnusedParameters": true,
+        "esModuleInterop": true,
         "types": [ "node" ]
    }
 } 

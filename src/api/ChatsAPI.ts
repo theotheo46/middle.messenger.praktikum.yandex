@@ -6,14 +6,14 @@ export interface ChatInfo {
   title: string;
   avatar?: string;
   unread_count: number;
-  last_message?: {
+  last_message?: { 
     user: User,
     time: string;
     content: string;
   }
 }
 
-export class ChatsAPI extends BaseAPI {
+export class ChatsAPI extends BaseAPI {    
   constructor() {
     super('/chats');
   }

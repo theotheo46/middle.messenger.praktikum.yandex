@@ -11,10 +11,13 @@ import left from '../../../static/left.png';
 import ResourcesAPI from '../../api/ResourcesAPI';
 
 
+interface ProfileSavePasswordPageProps {
+  title: string;
+}
 export class ProfileSavePasswordPageProto extends Block {
 
-  constructor() {
-    super( { events: { submit: (e: Event) => this.onPasswordSave(e) } });
+  constructor(props: ProfileSavePasswordPageProps) {
+    super( { ...props, events: { submit: (e: Event) => this.onPasswordSave(e) } });
   }
 
   protected init() {
