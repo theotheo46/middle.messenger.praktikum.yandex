@@ -3,7 +3,7 @@ import {Link} from '../../components/Link';
 import {LabeledInput} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profile.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import AuthController from '../../controllers/AuthController';
 import UserController from '../../controllers/UserController';
 import { withStore } from '../../utils/Store';
@@ -24,7 +24,7 @@ interface ProfilePageProps {
     submit: (e: Event) => void
   }
 }
-export class ProfilePageProto extends Block<ProfilePageProps> {
+export class ProfilePageProto extends Block {
 
   constructor(props: ProfilePageProps) {
     super({...props, events: { submit: (e: Event) => this.onProfileSave(e) }});

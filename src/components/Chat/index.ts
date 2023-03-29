@@ -1,11 +1,11 @@
 import Block from '../../utils/Block';
 import template from './chat.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import { withStore } from '../../utils/Store';
 import { ChatInfo } from '../../api/ChatsAPI';
 import ResourcesAPI from '../../api/ResourcesAPI';
 
-interface ChatProps {
+export interface ChatProps {
   id: number;
   title: string;
   avatar?: string;
@@ -29,6 +29,6 @@ class ChatBase extends Block<ChatProps> {
   }
 }
 
-export const withSelectedChat = withStore(state => ({selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat)}));
+export const withSelectedChat = withStore<ChatProps>(state => ({selectedChat: (state.chats || []).find((chat: ChatInfo) => chat.id === state.selectedChat)}));
 
 export const Chat = withSelectedChat(ChatBase);

@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import {LabeledInput} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profileSavePassword.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import { withStore } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
 import { Password } from '../../api/UserAPI';

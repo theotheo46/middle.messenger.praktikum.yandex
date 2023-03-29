@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import {Input, InputProps} from '../Input';
 import { ErrorInformer} from '../ErrorInformer';
 import template from './placeholderinput.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import {Validator, InputNames} from '../../utils/Validator';
 
 export interface PlaceHolderInputProps extends InputProps{

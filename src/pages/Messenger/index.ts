@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './messenger.hbs';
 import { ChatsList } from '../../components/ChatsList';
 import { Messenger } from '../../components/Messenger';
-import * as styles from '../../styles.module.pcss';       
+import styles from '../../styles.module.pcss';       
 import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../utils/Store';
 
