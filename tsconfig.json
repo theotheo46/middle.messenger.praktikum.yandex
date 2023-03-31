@@ -16,7 +16,7 @@
         "noUnusedLocals": true,  
         "noUnusedParameters": true,
         "esModuleInterop": true,
-        "types": [ "node" ]
+        "types": [ "node", "mocha"]
    }
 } 
 

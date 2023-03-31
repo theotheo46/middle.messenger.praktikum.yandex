@@ -25,3 +25,7 @@ Aaa101010
 8451
 8452
 8453
+
+docker build --pull --rm -f "Dockerfile" -t theochat:dev "."
+
+docker run -d -p 3000:3000 theochat:dev
