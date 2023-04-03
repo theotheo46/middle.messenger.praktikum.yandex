@@ -4,11 +4,6 @@
   "description": "sprint_4 YAP project",
   "source": "src/index.html",
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
-  },
   "scripts": {
     "start": "node ./server.js",
     "dev": "webpack serve --mode=none",
@@ -16,7 +11,8 @@
     "lint": "stylelint src/*.pcss &&  eslint .",
     "clean": "rm -rf node_modules/",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
-    "env": "env"
+    "env": "env",
+    "precommit": "npm run test"
   },
   "dependencies": {
     "autoprefixer": "10.4.13",
