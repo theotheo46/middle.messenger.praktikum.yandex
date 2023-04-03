@@ -1,41 +1,71 @@
 # Название проекта
-Проектная работа Sprint 3
+Проектная работа Sprint 4
 
 ## Содержание
 - [Технологии](#технологии) 
-- [Сборка](#сборка)
+- [Сборка и контейнеризация](#сборка-и-контейнеризация)
 - [Требования](#требования)
 - [Эскизы экранов проекта](#эскизы-экранов-проекта)
+- [Testing](#testing)
 - [Linting](#linting)
-- [Netlify](#netlify)
+- [Precommit hook](#precommit-hook)
+- [Хостинг](#хостинг)
 - [Pull request](#pull-request)
 
 
 ### Технологии
-- [Parcel](https://parceljs.org/)
+- [Webpack](https://webpack.js.org/)
 - [Handlebarsjs](https://handlebarsjs.com/)
 - [Node JS](https://nodejs.org/en/)
 - [ESLint](https://eslint.org/)
 - [Stylelint](https://stylelint.io/)
 - [Typescript](https://www.typescriptlang.org/)
+- [Mocha](https://mochajs.org/)
+- [Docker](https://www.docker.com/)
+- [Yandex Cloud](https://cloud.yandex.com/en-ru/)
 
-### Сборка
-Проект реализован на Typescript. Сборка проекта осуществляется в VSCode с помощью скриптов
+### Сборка и контейнеризация
+Проект реализован на Typescript. Сборка проекта осуществляется в VSCode с помощью  webpack для DEV и Prom сред с помощью скриптов
 
-Сборка и запуск в DEV среде с помощью parcel
+Сборка и запуск в DEV среде с помощью webpack-dev-server - сервер запускается на порту 9000
 ```
-parcel
-```
-
-Сборка и запуск express server
-```
-npm run build && node src/server/server.ts
+webpack serve --mode=none
 ```
 
-В этом случае в консоль выводятся порт и значение текущей директории
+Сборка для контейнеризации
 ```
-__dirname: /home/theo/js/webmessenger/src/server
-Мой порт: 3000
+webpack --config ./webpack.config.js --mode=none
+```
+
+Локальный запуск без контейнера - в этом случае в консоль выводятся порт на котором запущен express server (3000)
+```
+node ./server.js
+listening on  3000
+```
+
+Контейнеризация
+```
+docker build --pull --rm -f "Dockerfile" -t theochat:dev "."
+```
+
+Локальный запуск Docker контейнера на порту 3000
+```
+docker run -d -p 3000:3000 theochat:dev
+```
+
+Создание Container registry в YC - создан с ID=crprso09bfgobrji6lha
+```
+yc container registry create --name theo-registry
+```
+
+Tagging локального образа theochat:dev в соответствии с Container registry ID 
+```
+docker tag theochat:dev cr.yandex/crprso09bfgobrji6lha/theochat:dev
+```
+
+Push docker image to YC
+```
+docker push cr.yandex/crprso09bfgobrji6lha/theochat:dev
 ```
 
 
@@ -47,22 +77,27 @@ __dirname: /home/theo/js/webmessenger/src/server
 https://www.figma.com/file/czgVwSwTwVXR7bsZkTCPpq/ChatDesign?node-id=0%3A1&t=fprZOeuuS8Qe8bnG-1
 
 
+### Testing
+В проекте использовался тестовый фреймворк Mocha - тесты запускаются командой
+
+```
+npm run test
+```
+
 ### Linting
 В проекте использовались следующие линтеры - проверки проходят без ошибок
-#### ESLint
-```
-node_modules/.bin/eslint . --ext .ts
-```
-#### Stylelint
-```
-npx stylelint src/styles.module.pcss 
-```
 
+```
+npm run lint
+```
+### Precommit hook
+В проекте создан precommit hook с помощью **husky**
+Конфигурация задана в файле .huskyrc.json и в качестве хука используется скрипт **npm test**
 
-### Netlify
-Проект выложен на хостинг-портал Netlify по ссылке:
-https://sprint-3--gentle-basbousa-86713f.netlify.app/
+### Хостинг
 
+Проект задеплоен в виде Docker образа в Serverless container в Yandex Cloud и доступен по публичной ссылке
+https://bba76kud7c339tn51f0j.containers.yandexcloud.net/
 
 
 ### Pull request
