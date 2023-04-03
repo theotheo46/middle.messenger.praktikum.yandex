@@ -12,7 +12,8 @@
     "clean": "rm -rf node_modules/",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
     "env": "env",
-    "precommit": "npm run test"
+    "precommit": "npm test",
+    "prepush": "npm test"
   },
   "dependencies": {
     "autoprefixer": "10.4.13",
