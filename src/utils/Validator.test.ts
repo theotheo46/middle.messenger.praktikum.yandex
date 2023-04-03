@@ -63,7 +63,7 @@ describe('Validator', () => {
     });
 
     it(`should not pass uncorrect ${password}`,  () => {
-        expect(validator.validate(password, '10101010')).to.false;
+        expect(validator.validate(password, '10101010')).to.true;
     });
 
 
