@@ -85,14 +85,14 @@ npm run test
 ```
 
 ### Linting
-В проекте использовались следующие линтеры - проверки проходят без ошибок
+В проекте использовались линтеры ESLint и Stylelint - линтинг запускается командой
 
 ```
 npm run lint
 ```
 ### Precommit hook
-В проекте создан precommit hook с помощью **husky**
-Конфигурация задана в файле .huskyrc.json и в качестве хука используется скрипт **npm test**
+В проекте создан precommit hook с помощью **husky**.
+Конфигурация задана в файле **.huskyrc.json** и в качестве хука используется скрипт **npm test**
 
 ### Хостинг
 
@@ -101,4 +101,4 @@ https://bba76kud7c339tn51f0j.containers.yandexcloud.net/
 
 
 ### Pull request
-https://github.com/theotheo46/middle.messenger.praktikum.yandex/pull/5
+https://github.com/theotheo46/middle.messenger.praktikum.yandex/pull/6

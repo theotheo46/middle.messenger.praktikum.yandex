@@ -5,7 +5,7 @@
   "source": "src/index.html",
   "license": "MIT",
   "scripts": {
-    "start": "node ./server.js",
+    "start": "npm run build && node ./server.js",
     "dev": "webpack serve --mode=none",
     "build": "webpack --config ./webpack.config.js --mode=none",
     "lint": "stylelint src/*.pcss &&  eslint .",
