@@ -11,9 +11,7 @@
     "lint": "stylelint src/*.pcss &&  eslint .",
     "clean": "rm -rf node_modules/",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
-    "env": "env",
-    "precommit": "npm run test",
-    "prepush": "npm run test"
+    "env": "env"
   },
   "dependencies": {
     "autoprefixer": "10.4.13",
