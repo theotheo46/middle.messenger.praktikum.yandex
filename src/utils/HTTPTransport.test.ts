@@ -31,4 +31,36 @@ describe('HTTPTransport', () => {
 
     expect(request.method).to.eq('Get');
   });
+  it('.put() should send PUT request', () => {
+    instance.put('/user', {});
+
+    const [request] = requests;
+
+    expect(request.method).to.eq('Put');
+  });
+
+  it('.post() should send POST request', () => {
+    instance.post('/user', {});
+
+    const [request] = requests;
+
+    expect(request.method).to.eq('Post');
+  });
+
+  it('.patch() should send PATCH request', () => {
+    instance.patch('/user', {});
+
+    const [request] = requests;
+
+    expect(request.method).to.eq('Patch');
+  });
+
+  it('.delete() should send DELETE request', () => {
+    instance.delete('/user', {});
+
+    const [request] = requests;
+
+    expect(request.method).to.eq('Delete');
+  });
+
 });

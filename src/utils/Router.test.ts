@@ -39,6 +39,18 @@ describe('Router', () => {
     });
   });
 
+  describe('.forward()', () => {
+    it('should render a page on history forward action', () => {
+      Router
+        .use('/', BlockMock)
+        .start();
+
+      Router.forward();
+
+      expect(getContentFake.callCount).to.eq(1);
+    });
+  });
+
   it('should render a page on start', () => {
     Router
       .use('/', BlockMock)

@@ -4,6 +4,11 @@
   "description": "sprint_4 YAP project",
   "source": "src/index.html",
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
+  },
   "scripts": {
     "start": "node ./server.js",
     "dev": "webpack serve --mode=none",
@@ -44,6 +49,7 @@
     "eslint-plugin-react": "7.32.2",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "7.0.0",
     "jsdom": "21.1.1",
     "mocha": "10.2.0",
     "path-browserify": "1.0.1",
