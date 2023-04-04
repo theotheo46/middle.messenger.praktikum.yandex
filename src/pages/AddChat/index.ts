@@ -17,7 +17,7 @@ export interface AddChatProps  {
       }
   
   
-   init() {
+   init() { 
 
      this.props.showModal = false;
   

@@ -15,7 +15,7 @@ export class ResourcesController {
       const resInfo = await this.api.saveresource(data);
       const fullServerPath = this.api.get_res_url() + resInfo.path;
       const state = store.getState();
-      MessagesController.sendMessage(state.selectedChat!, fullServerPath);
+      MessagesController.sendMessage(state.selectedChat, fullServerPath);
 
     } catch (e: any) {
         let errorText = 'Internal sever error';

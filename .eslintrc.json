@@ -19,6 +19,6 @@
     ],
     "ignorePatterns": ["src/utils/withRouter.ts", "src/server/server.ts"],
     "rules": {
-
+        "@typescript-eslint/ban-ts-comment": "off"
     }
 }
