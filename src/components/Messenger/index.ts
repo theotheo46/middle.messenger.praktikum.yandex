@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './messenger.hbs';
 import { Message } from '../Message';
 import { Button } from '../Button';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import MessagesController, { Message as MessageInfo } from '../../controllers/MessagesController';
 import store, { withStore } from '../../utils/Store';
 import { PlaceHolderInput } from '../PlaceHolderInput';
@@ -76,7 +76,7 @@ class MessengerBase extends Block<MessengerProps> {
     });
   }
 
-  protected componentDidUpdate(oldProps: MessengerProps, newProps: MessengerProps): boolean {
+  protected componentDidUpdate(_oldProps: MessengerProps, newProps: MessengerProps): boolean {
     this.children.messages = this.createMessages(newProps);
 
     return true;

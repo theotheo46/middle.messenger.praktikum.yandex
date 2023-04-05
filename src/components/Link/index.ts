@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './link.hbs';
 import { PropsWithRouter, withRouter } from '../../utils/withRouter';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 
 export interface LinkProps extends PropsWithRouter {
   image? : unknown;

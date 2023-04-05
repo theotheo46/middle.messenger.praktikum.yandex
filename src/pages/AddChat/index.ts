@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import template from './addchat.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import store, { withStore } from '../../utils/Store';
 import ChatsController from '../../controllers/ChatsController';
 
@@ -17,7 +17,7 @@ export interface AddChatProps  {
       }
   
   
-   init() {
+   init() { 
 
      this.props.showModal = false;
   

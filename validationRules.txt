@@ -25,3 +25,25 @@ Aaa101010
 8451
 8452
 8453
+
+docker build --pull --rm -f "Dockerfile" -t theochat:dev "."
+
+docker run -d -p 3000:3000 theochat:dev
+
+yc container registry create --name theo-registry
+
+id: crprso09bfgobrji6lha
+folder_id: b1gg3dco9qhkm5ngva3i
+name: theo-registry
+status: ACTIVE
+created_at: "2023-04-03T17:36:01.262Z"
+
+yc container registry configure-docker
+ docker image ls
+
+
+
+docker push cr.yandex/crprso09bfgobrji6lha/theochat:dev
+
+
+cr.yandex/crprso09bfgobrji6lha/theochat:dev

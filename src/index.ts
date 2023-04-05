@@ -7,11 +7,6 @@ import { ProfileSavePassword } from './pages/ProfileSavePassword';
 import { ErrorPage } from './pages/Error';
 import { MessengerPage } from './pages/Messenger';
 
-declare global {
-  interface Window {
-    goToPage:unknown;
-  }
-}
 
 enum Routes {
   Login = '/',
@@ -22,7 +17,7 @@ enum Routes {
   Error = '/error',
   Messenger = '/messenger',
   AddRemoveUser = '/addremoveuser',
-  Attach = '/attach',
+  Attach = '/attach', 
 }
 
 window.addEventListener('DOMContentLoaded', async () => {

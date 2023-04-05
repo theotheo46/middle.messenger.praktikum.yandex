@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import {LabeledInput} from '../../components/LabeledInput';
 import {Button} from '../../components/Button';
 import template from './profileSavePassword.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import { withStore } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
 import { Password } from '../../api/UserAPI';
@@ -11,10 +11,13 @@ import left from '../../../static/left.png';
 import ResourcesAPI from '../../api/ResourcesAPI';
 
 
+interface ProfileSavePasswordPageProps {
+  title: string;
+}
 export class ProfileSavePasswordPageProto extends Block {
 
-  constructor() {
-    super( { events: { submit: (e: Event) => this.onPasswordSave(e) } });
+  constructor(props: ProfileSavePasswordPageProps) {
+    super( { ...props, events: { submit: (e: Event) => this.onPasswordSave(e) } });
   }
 
   protected init() {

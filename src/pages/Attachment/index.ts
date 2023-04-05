@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
 import template from './attachment.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import store, { withStore } from '../../utils/Store';
 import { AddChatProps } from '../AddChat';
 import ResourcesController from '../../controllers/ResourcesController';

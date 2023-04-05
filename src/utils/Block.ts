@@ -113,7 +113,8 @@ class Block<P extends Record<string, any> = any> {
     }
   }
 
-  protected componentDidUpdate(oldProps: P, newProps: P) {
+  protected componentDidUpdate(_oldProps: P, _newProps: P) {
+    console.log(`_oldProps:${_oldProps}, _newProps:${_newProps}`);
     return true;
   }
 
@@ -171,7 +172,13 @@ class Block<P extends Record<string, any> = any> {
 
       component.getContent()?.append(...Array.from(stub.childNodes));
 
-      stub.replaceWith(component.getContent()!);
+      const content = component.getContent();
+
+      if (content=== null) {
+        throw Error('component.getContent() is null');
+      }
+
+      stub.replaceWith(content);
     }
 
     Object.entries(this.children).forEach(([_, component]) => {

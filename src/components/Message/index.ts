@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './message.hbs';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 
 interface MessageProps {
   content: string;

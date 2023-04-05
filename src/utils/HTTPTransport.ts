@@ -58,8 +58,8 @@ export enum Method {
         const xhr = new XMLHttpRequest();
         xhr.open(method, url);
   
-        xhr.onreadystatechange = (e) => {
-  
+        xhr.onreadystatechange = (_e) => {
+          console.log(_e);
           if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status < 400) {
               resolve(xhr.response);

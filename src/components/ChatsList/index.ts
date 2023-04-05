@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './chatsList.hbs';
 import { Chat } from '../Chat';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import store, { withStore } from '../../utils/Store';
 import { ChatInfo } from '../../api/ChatsAPI';
 import ChatsController from '../../controllers/ChatsController';
@@ -147,7 +147,7 @@ class ChatsListBase extends Block<ChatsListProps>  {
     }
   }
 
-  protected componentDidUpdate(oldProps: ChatsListProps, newProps: ChatsListProps): boolean {
+  protected componentDidUpdate(_oldProps: ChatsListProps, newProps: ChatsListProps): boolean {
     this.children.chats = this.createChats(newProps);
     
     return true;

@@ -3,8 +3,7 @@ import {Link} from '../../components/Link';
 import {PlaceHolderInput} from '../../components/PlaceHolderInput';
 import {Button} from '../../components/Button';
 import template from './registration.hbs';
-import {Validator} from '../../utils/Validator';
-import * as styles from '../../styles.module.pcss';
+import styles from '../../styles.module.pcss';
 import AuthController from '../../controllers/AuthController';
 import { SignupData } from '../../api/AuthAPI';
 
@@ -12,8 +11,6 @@ export class RegistrationPage extends Block {
   constructor() {
     super( { events: { submit: (e: Event) => this.onSubmit(e) } });
   }
-
-  private readonly validator = Validator.Instance; 
 
   protected init() {
     this.props.title = 'Регистрация';
